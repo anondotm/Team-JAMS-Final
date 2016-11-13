@@ -13,9 +13,10 @@ public class DestroyMyself : MonoBehaviour {
 	
 	}
 
-	void OnBecomeInvisible () {
+	void OnBecameInvisible () {
 
-		gameObject.SetActive (false); 
+		Destroy (this.gameObject); 
+		Debug.Log ("gone!"); 
 
 	}
 }
