@@ -4,6 +4,8 @@ using System.Collections;
 
 //this script manages the endless loop of spawning enemies. It is on the SpawnManager object. 
 
+//TO DO: change so spawning values and enemies change depending on what wave you are on
+
 public class Spawner : MonoBehaviour
 {
 	//public GameObject hazard;
@@ -31,7 +33,7 @@ public class Spawner : MonoBehaviour
 
 	}
 
-	IEnumerator SpawnWaves () //actual thing that spawns the enemies
+	IEnumerator SpawnWaves () //actual coroutine that spawns the enemies
 	{
 		yield return new WaitForSeconds (startWait); //startWait is how many seconds before first enemy appears 
 		while (true)
