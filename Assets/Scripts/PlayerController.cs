@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour {
 			if (euler.x <= playerVisionMinX) {
 				euler.x = Mathf.Clamp (euler.x, playerVisionMinX, playerVisionMaxX);
 			}
-			/*if (euler.y >= playerVisionMaxY) {
+			if (euler.y >= playerVisionMaxY) {
 				//If so then the angle is locked between the max and min values.
 				euler.y = Mathf.Clamp (euler.y, playerVisionMinY, playerVisionMaxY);
 
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 			//The same is done here but for the min values.
 			if (euler.y <= playerVisionMinY) {
 				euler.y = Mathf.Clamp (euler.y, playerVisionMinY, playerVisionMaxY);
-			}*/
+			}
 		}
 	}
 
