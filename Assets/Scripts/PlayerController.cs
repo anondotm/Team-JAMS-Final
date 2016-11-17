@@ -7,39 +7,8 @@ public class PlayerController : MonoBehaviour {
 
 
 
-
-
-	/*
-	 * IMPORTANT!!!!!!!!!!!!!!!!
-	 * 
-	 * This script is no longer used in the game.
-	 * Just spent a good amount of time editing it
-	 * wondering why things were not working
-	 * Only to realize i wrote a new movement script.
-	 *
-	 *
-	 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	//Variable used to access the character controller (what we will use to make the player character move).
-	CharacterController cController;
+	//CharacterController cController;
 	//Determines how hign and low the player character can look
 	public int playerVisionMinX = -50;
 	public int playerVisionMaxX = 65;
