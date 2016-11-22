@@ -19,6 +19,6 @@ public class EnemyMovement : MonoBehaviour {
 	}
 
 	void goToPlayer() { //makes enemies move down at the speed variable specified 
-		transform.position += Vector3.forward *speed* Time.deltaTime;
+		transform.position += -Vector3.forward *speed* Time.deltaTime;
 	}
 }
