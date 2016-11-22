@@ -13,6 +13,10 @@ public class ShootBullet : MonoBehaviour {
 	public GameObject[] bulletArray;
 	public string nextAmmo;
 
+	//Array for Default, Red, Green, and Blue material to indicate what ammo is next (or if the cannon has any ammo at all)
+	public GameObject nextAmmoIndicator;
+	public Material[] cannonMaterials;
+
 	//We know where to spawn the bullets
 	public Transform spawner;
 
@@ -61,7 +65,20 @@ public class ShootBullet : MonoBehaviour {
 		//After being fed ammo or shooting bullet, update information for the next ammo type the cannon will shoot
 		if (cannonAmmo.Count > 0) {
 			nextAmmo = cannonAmmo [0];
+
+			//Based on "next ammo," cannon will change material
+			if (nextAmmo == "Red") {
+				nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [0];
+			} else if (nextAmmo == "Green") {
+				nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [1];
+			} else if (nextAmmo == "Blue") {
+				nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [2];
+			} 
 		}
+			
+		else {
+			nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [3];
+		} 
 
 		//updates UI element with heldAmmo contents!
 		heldAmmoText.GetComponent<Text>().text = "Ammo held:";
