@@ -8,7 +8,7 @@ public class PickupAmmo : MonoBehaviour {
 	public GameObject cannonObject;
 
 	//list that stores player's "held" ammo
-	public List<int> heldAmmo = new List<int>(); 
+	public List<string> heldAmmo = new List<string>(); 
 	//updates with size of heldAmmo list, used to limit amt. of ammo carried
 	public int heldAmmoSize;
 
@@ -37,11 +37,11 @@ public class PickupAmmo : MonoBehaviour {
 					if (heldAmmoSize < 3) {
 						
 						if (hit.collider.tag == "Ammo1") {
-							heldAmmo.Add (1);
+							heldAmmo.Add ("Red");
 						} else if (hit.collider.tag == "Ammo2") {
-							heldAmmo.Add (2);
+							heldAmmo.Add ("Green");
 						} else if (hit.collider.tag == "Ammo3") {
-							heldAmmo.Add (3);
+							heldAmmo.Add ("Blue");
 						} 
 					
 					//if they are, tell them to drop something off!

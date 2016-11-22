@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
 
 
 	//List used to "hold" ammo for the cannon
-	public List<int> cannonAmmo = new List<int>();
+	public List<string> cannonAmmo = new List<string>();
 
 	//Variable used to access the character controller (what we will use to make the player character move).
 	//CharacterController cController;
