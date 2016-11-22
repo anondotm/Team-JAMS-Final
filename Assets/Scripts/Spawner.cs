@@ -103,7 +103,7 @@ public class Spawner : MonoBehaviour
 
 				enemyIndex = Random.Range (0, spawnArray.Length);
 				//Instantiate (mediumEnemies[UnityEngine.Random.Range(0, mediumEnemies.Length - 1)], spawnPosition, spawnRotation); //instantiate enemy
-				Instantiate (spawnArray [enemyIndex], spawnPosition, spawnRotation);
+				Instantiate (spawnArray [enemyIndex], spawnPosition, Quaternion.identity);
 				yield return new WaitForSeconds (spawnWait);
 
 			} //end of for in i = 0 

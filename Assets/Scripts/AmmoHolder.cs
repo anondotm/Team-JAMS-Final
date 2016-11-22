@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class AmmoHolder : MonoBehaviour {
+	public GameObject cannonObject;
+
 	public List<int> heldAmmo = new List<int>();
 	// Use this for initialization
 	void Start () {
@@ -11,6 +13,9 @@ public class AmmoHolder : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-	
+
+	}
+	public int getAmmo (){
+		return heldAmmo[0];
 	}
 }

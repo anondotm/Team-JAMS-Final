@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController1 : MonoBehaviour {
 
 
 
-
+	//List used to "hold" ammo for the cannon
+	public List<string> cannonAmmo = new List<string>();
 
 	//Variable used to access the character controller (what we will use to make the player character move).
 	//CharacterController cController;
@@ -80,6 +82,12 @@ public class PlayerController : MonoBehaviour {
 	}
 	public void setCanMove(bool activator){
 		canMove = activator;
+	}
+
+
+	//activated by "AmmoHolder" script on cannon repo, the cannon receives 
+	public void receiveAmmo(){
+
 	}
 
 }
