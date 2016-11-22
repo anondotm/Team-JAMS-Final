@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PickupAmmo : MonoBehaviour {
+public class PickupAmmo1 : MonoBehaviour {
 
 	//object referencing cannon
 	public GameObject cannonObject;
