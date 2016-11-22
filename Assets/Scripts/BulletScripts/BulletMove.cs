@@ -8,9 +8,14 @@ public class BulletMove : MonoBehaviour {
 	private Rigidbody bulletRigidBody;
 	//Define the speed at which the bullet will move
 	public int moveSpeedBullet;
+
+	//Scoremanager object to update whenever enemy is hit!
+	public GameObject GameManager;
+
 	// Use this for initialization
 	void Start () {
 		//We get the rigidbody
+		GameManager = GameObject.FindGameObjectWithTag ("gameManagertag"); 
 		bulletRigidBody = GetComponent<Rigidbody> ();
 	}
 
@@ -25,6 +30,7 @@ public class BulletMove : MonoBehaviour {
 		if (enemy.tag == "enemy") {
 			if (bulletIdentity == enemy.GetComponent<EnemyMovement> ().enemyIdentity) {
 				Destroy (enemy.gameObject);
+				GameManager.GetComponent<ScoreManager> ().scoreUpdate (1);
 			}
 			Destroy (gameObject);
 		}
