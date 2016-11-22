@@ -24,7 +24,7 @@ public class PickupAmmo : MonoBehaviour {
 
 	void Start () {
 		//stores intiial movement speed of character so we can manipulate it based on ammoHeld
-		initialMoveSpeed = GetComponent<Movement> ().movespeed;
+		//initialMoveSpeed = GetComponent<Movement> ().movespeed;
 	}
 	
 	// Update is called once per frame
@@ -55,7 +55,7 @@ public class PickupAmmo : MonoBehaviour {
 
 
 						currentMoveSpeed -= initialMoveSpeed * .2f;
-						GetComponent<Movement> ().movespeed = currentMoveSpeed;
+						//GetComponent<Movement> ().movespeed = currentMoveSpeed;
 					
 					//if they are, tell them to drop something off!
 					} else {
@@ -73,11 +73,11 @@ public class PickupAmmo : MonoBehaviour {
 				
 					//when players interact with the dumbwaiter, the game actually just "adds" the player's ammo to the Cannon Object's ammo list ("cannonAmmo");
 				} else if (hit.collider.tag == "DumbWaiter") {
-					cannonObject.GetComponent<PlayerController> ().cannonAmmo.AddRange (heldAmmo);
+					cannonObject.GetComponent<ShootBullet> ().cannonAmmo.AddRange (heldAmmo);
 					heldAmmo.Clear ();
 
 					currentMoveSpeed = initialMoveSpeed;
-					GetComponent<Movement> ().movespeed = currentMoveSpeed;
+					//GetComponent<Movement> ().movespeed = currentMoveSpeed;
 				}
 
 				updateText ();
