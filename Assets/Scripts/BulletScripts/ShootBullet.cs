@@ -5,9 +5,13 @@ using System.Collections.Generic;
 
 public class ShootBullet : MonoBehaviour {
 
-	//List for bullets
+	//List for Ammo
 	public List<string> cannonAmmo = new List<string>();
 	public GameObject heldAmmoText;
+
+	//Array for bullet types. "nextAmmo" checks what type of ammo will be used next.
+	public GameObject[] bulletArray;
+	public string nextAmmo;
 
 	//We know where to spawn the bullets
 	public Transform spawner;
@@ -39,14 +43,26 @@ public class ShootBullet : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			//If you have at enough ammo to shoot...
 			if (cannonAmmo.Count > 0) {
-				Instantiate (bullet, spawner.position, playerT.rotation);
-				cannonAmmo.RemoveAt (cannonAmmo.Count - 1);
+				//Shoot type of bullet based on what ammo is next in the cannonAmmo list ("nextAmmo")
+				if (nextAmmo == "Red") {
+					Instantiate (bulletArray[0], spawner.position, playerT.rotation);
+				} else if (nextAmmo == "Green") {
+					Instantiate (bulletArray[1], spawner.position, playerT.rotation);
+				} else if (nextAmmo == "Blue") {
+					Instantiate (bulletArray[2], spawner.position, playerT.rotation);
+				} 
+				cannonAmmo.RemoveAt (0);
 				textUpdate();
 			}
 		}
 	}
 
 	public void textUpdate() {
+		//After being fed ammo or shooting bullet, update information for the next ammo type the cannon will shoot
+		if (cannonAmmo.Count > 0) {
+			nextAmmo = cannonAmmo [0];
+		}
+
 		//updates UI element with heldAmmo contents!
 		heldAmmoText.GetComponent<Text>().text = "Ammo held:";
 

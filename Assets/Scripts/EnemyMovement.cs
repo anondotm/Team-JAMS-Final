@@ -4,6 +4,8 @@ using System.Collections;
 //this script deals with the downward movement of the spawned enemies 
 
 public class EnemyMovement : MonoBehaviour {
+	public string enemyIdentity;
+
 	public float speed;
 
 	void Start () {

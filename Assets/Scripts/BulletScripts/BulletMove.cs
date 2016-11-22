@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class BulletMove : MonoBehaviour {
+	//The "identity" of this bullet (color for now). Use this to check if identity matches for enemies, if you can destroy
+	public string bulletIdentity;
 	//Each bullet has a rigidbody to add velocity/for it to move
 	private Rigidbody bulletRigidBody;
 	//Define the speed at which the bullet will move
@@ -21,7 +23,9 @@ public class BulletMove : MonoBehaviour {
 	void OnTriggerEnter( Collider enemy){
 		//Destroy the bullet and enemy if they collide. ENEMY NEEDS TO BE TRIGGER!!!!!!
 		if (enemy.tag == "enemy") {
-			Destroy (enemy.gameObject);
+			if (bulletIdentity == enemy.GetComponent<EnemyMovement> ().enemyIdentity) {
+				Destroy (enemy.gameObject);
+			}
 			Destroy (gameObject);
 		}
 	}
