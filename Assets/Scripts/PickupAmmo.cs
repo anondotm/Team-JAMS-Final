@@ -5,8 +5,12 @@ using System.Collections.Generic;
 
 public class PickupAmmo : MonoBehaviour {
 
-	public List<int> heldAmmo = new List<int>(); //list that stores player's "held" ammo
-	public int heldAmmoSize; //updates with size of heldAmmo list, used to limit amt. of ammo carried
+	public GameObject cannonObject;
+
+	//list that stores player's "held" ammo
+	public List<int> heldAmmo = new List<int>(); 
+	//updates with size of heldAmmo list, used to limit amt. of ammo carried
+	public int heldAmmoSize;
 
 	public GameObject heldAmmoText;
 
@@ -51,9 +55,9 @@ public class PickupAmmo : MonoBehaviour {
 				else if (hit.collider.tag == "Trash") {
 					heldAmmo.Clear ();
 				
-				//players can drop off ammo at cannon dumbwaiter, "adding" their held ammo to cannon's held ammo
+					//when players interact with the dumbwaiter, the game actually just "adds" the player's ammo to the Cannon Object's ammo list ("cannonAmmo");
 				} else if (hit.collider.tag == "DumbWaiter") {
-					hit.collider.GetComponent<AmmoHolder> ().heldAmmo.AddRange (heldAmmo);
+					cannonObject.GetComponent<PlayerController> ().cannonAmmo.AddRange (heldAmmo);
 					heldAmmo.Clear ();
 				}
 
