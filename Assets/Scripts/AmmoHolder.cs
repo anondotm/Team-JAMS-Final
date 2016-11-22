@@ -11,6 +11,9 @@ public class AmmoHolder : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-	
+
+	}
+	public int getAmmo (){
+		return heldAmmo[0];
 	}
 }
