@@ -29,7 +29,11 @@ public class ShootBullet : MonoBehaviour {
 		//totalAmmo = theAmmo.getAmmo ();
 		//If you press mouse button, ammo will be shot from the cannon.
 		if (Input.GetMouseButtonDown (0)) {
-			Instantiate(bullet, spawner.position, playerT.rotation);
+			//If you have at enough ammo to shoot...
+			if (cannonAmmo.Count > 0) {
+				Instantiate (bullet, spawner.position, playerT.rotation);
+				cannonAmmo.RemoveAt (cannonAmmo.Count - 1);
+			}
 		}
 	}
 }
