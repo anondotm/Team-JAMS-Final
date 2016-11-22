@@ -76,6 +76,8 @@ public class PickupAmmo : MonoBehaviour {
 					cannonObject.GetComponent<ShootBullet> ().cannonAmmo.AddRange (heldAmmo);
 					heldAmmo.Clear ();
 
+					cannonObject.GetComponent<ShootBullet> ().textUpdate();
+
 					currentMoveSpeed = initialMoveSpeed;
 					//GetComponent<Movement> ().movespeed = currentMoveSpeed;
 				}
@@ -97,8 +99,10 @@ public class PickupAmmo : MonoBehaviour {
 		//updates UI element with heldAmmo contents!
 		heldAmmoText.GetComponent<Text>().text = "Ammo held:";
 
-		for (int i = 0; i <= heldAmmoSize; i++) {
-			heldAmmoText.GetComponent<Text> ().text += " " + heldAmmo [i];
+		if (heldAmmoSize > 0) {
+			for (int i = 0; i <= heldAmmoSize; i++) {
+				heldAmmoText.GetComponent<Text> ().text += " " + heldAmmo [i];
+			}
 		}
 	}
 }
