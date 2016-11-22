@@ -47,12 +47,16 @@ public class PickupAmmo : MonoBehaviour {
 						
 						if (hit.collider.tag == "Ammo1") {
 							heldAmmo.Add ("Red");
+							updateText ();
 						} else if (hit.collider.tag == "Ammo2") {
 							heldAmmo.Add ("Green");
+							updateText ();
 						} else if (hit.collider.tag == "Ammo3") {
 							heldAmmo.Add ("Blue");
+							updateText ();
 						} 
 
+						//updateText ();
 
 						currentMoveSpeed -= initialMoveSpeed * .2f;
 						//GetComponent<Movement> ().movespeed = currentMoveSpeed;
@@ -76,13 +80,16 @@ public class PickupAmmo : MonoBehaviour {
 					cannonObject.GetComponent<ShootBullet> ().cannonAmmo.AddRange (heldAmmo);
 					heldAmmo.Clear ();
 
+					updateText ();
+
 					cannonObject.GetComponent<ShootBullet> ().textUpdate();
 
 					currentMoveSpeed = initialMoveSpeed;
 					//GetComponent<Movement> ().movespeed = currentMoveSpeed;
 				}
 
-				updateText ();
+				//whenever you press space, updates the text
+				//updateText ();
 			}
 
 		}
@@ -99,10 +106,11 @@ public class PickupAmmo : MonoBehaviour {
 		//updates UI element with heldAmmo contents!
 		heldAmmoText.GetComponent<Text>().text = "Ammo held:";
 
-		if (heldAmmoSize > 0) {
+		if (heldAmmo.Count > 0) {
 			for (int i = 0; i <= heldAmmoSize; i++) {
 				heldAmmoText.GetComponent<Text> ().text += " " + heldAmmo [i];
 			}
 		}
+
 	}
 }
