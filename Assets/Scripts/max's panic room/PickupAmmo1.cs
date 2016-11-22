@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PickupAmmo : MonoBehaviour {
+public class PickupAmmo1 : MonoBehaviour {
 
 	//object referencing cannon
 	public GameObject cannonObject;
@@ -24,7 +24,7 @@ public class PickupAmmo : MonoBehaviour {
 
 	void Start () {
 		//stores intiial movement speed of character so we can manipulate it based on ammoHeld
-		//initialMoveSpeed = GetComponent<Movement> ().movespeed;
+		initialMoveSpeed = GetComponent<Movement> ().movespeed;
 	}
 	
 	// Update is called once per frame
@@ -47,19 +47,15 @@ public class PickupAmmo : MonoBehaviour {
 						
 						if (hit.collider.tag == "Ammo1") {
 							heldAmmo.Add ("Red");
-							updateText ();
 						} else if (hit.collider.tag == "Ammo2") {
 							heldAmmo.Add ("Green");
-							updateText ();
 						} else if (hit.collider.tag == "Ammo3") {
 							heldAmmo.Add ("Blue");
-							updateText ();
 						} 
 
-						//updateText ();
 
 						currentMoveSpeed -= initialMoveSpeed * .2f;
-						//GetComponent<Movement> ().movespeed = currentMoveSpeed;
+						GetComponent<Movement> ().movespeed = currentMoveSpeed;
 					
 					//if they are, tell them to drop something off!
 					} else {
@@ -77,19 +73,14 @@ public class PickupAmmo : MonoBehaviour {
 				
 					//when players interact with the dumbwaiter, the game actually just "adds" the player's ammo to the Cannon Object's ammo list ("cannonAmmo");
 				} else if (hit.collider.tag == "DumbWaiter") {
-					cannonObject.GetComponent<ShootBullet> ().cannonAmmo.AddRange (heldAmmo);
+					cannonObject.GetComponent<PlayerController> ().cannonAmmo.AddRange (heldAmmo);
 					heldAmmo.Clear ();
 
-					updateText ();
-
-					cannonObject.GetComponent<ShootBullet> ().textUpdate();
-
 					currentMoveSpeed = initialMoveSpeed;
-					//GetComponent<Movement> ().movespeed = currentMoveSpeed;
+					GetComponent<Movement> ().movespeed = currentMoveSpeed;
 				}
 
-				//whenever you press space, updates the text
-				//updateText ();
+				updateText ();
 			}
 
 		}
@@ -106,11 +97,8 @@ public class PickupAmmo : MonoBehaviour {
 		//updates UI element with heldAmmo contents!
 		heldAmmoText.GetComponent<Text>().text = "Ammo held:";
 
-		if (heldAmmo.Count > 0) {
-			for (int i = 0; i <= heldAmmoSize; i++) {
-				heldAmmoText.GetComponent<Text> ().text += " " + heldAmmo [i];
-			}
+		for (int i = 0; i <= heldAmmoSize; i++) {
+			heldAmmoText.GetComponent<Text> ().text += " " + heldAmmo [i];
 		}
-
 	}
 }

@@ -17,12 +17,12 @@ public class DestroyMyself : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(Input.GetKeyDown(KeyCode.Space)){
-
-			Destruction (); 
-			Debug.Log ("this object is destroyed via keypress!"); 
-
-		}
+//		if(Input.GetKeyDown(KeyCode.Space)){
+//
+//			Destruction (); 
+//			Debug.Log ("this object is destroyed via keypress!"); 
+//
+//		}
 	
 	}
 
@@ -54,11 +54,11 @@ public class DestroyMyself : MonoBehaviour {
 
 	}
 
-	void OnBecameInvisible() {
-
-		Debug.Log ("destruction via invisibility"); 
-		Destruction (); 
-	}
+//	void OnBecameInvisible() {
+//
+//		Debug.Log ("destruction via invisibility"); 
+//		Destruction (); 
+//	}
 
 
 	void Destruction () {
