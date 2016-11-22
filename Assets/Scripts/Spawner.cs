@@ -65,7 +65,7 @@ public class Spawner : MonoBehaviour
 	} //end of update 
 
 
-	void TestingNumbers() {
+	void TestingNumbers() { //PRESS T to see the spawn chances of hard and easy enemies 
 
 		Debug.Log("spawnChanceHard = " + spawnChanceHard); 
 		Debug.Log ("spawnChanceEasy = " + spawnChanceEasy); 
