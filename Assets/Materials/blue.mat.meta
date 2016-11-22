@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Materials/blue.mat.meta
 guid: be1b78e10e4a6d744bf7f41d48f1bcc3
 timeCreated: 1479786920
-=======
-guid: 3e65427fadc86c44ead2e097fca03434
-timeCreated: 1479785363
->>>>>>> origin/master:Assets/Prefabs/Bullet.prefab.meta
 licenseType: Free
 NativeFormatImporter:
   userData: 

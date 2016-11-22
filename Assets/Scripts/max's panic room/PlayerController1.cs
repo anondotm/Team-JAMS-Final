@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController1 : MonoBehaviour {
 
 
 
@@ -85,5 +85,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 
+	//activated by "AmmoHolder" script on cannon repo, the cannon receives 
+	public void receiveAmmo(){
+
+	}
 
 }
