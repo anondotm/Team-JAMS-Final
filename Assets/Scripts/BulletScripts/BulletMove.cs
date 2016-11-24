@@ -34,5 +34,9 @@ public class BulletMove : MonoBehaviour {
 			}
 			Destroy (gameObject);
 		}
+
+		else if (enemy.tag == "Bullet Wall") {
+			Destroy (gameObject);
+		}
 	}
 }
