@@ -14,6 +14,7 @@ public class Accelerate : MonoBehaviour {
 	void FixedUpdate () {
 
 		goToPlayer(); //call function 
+		accelSpeed += .1f; 
 
 	}
 

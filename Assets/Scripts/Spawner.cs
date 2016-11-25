@@ -37,8 +37,6 @@ public class Spawner : MonoBehaviour
 		StartCoroutine (SpawnWaves());
 		SetWaveNumber (); 
 
-		spawnChanceHard = .10f;
-		spawnChanceEasy = .40f; 
 
 	}//end of start 
 
@@ -50,10 +48,11 @@ public class Spawner : MonoBehaviour
 
 			spawnChanceHard = .20f; 
 			spawnChanceEasy = .50f; 
+
 		} else if (waveNo > 10) {
 
-			spawnChanceHard = .30f; 
-			spawnChanceEasy = .60f; 
+			spawnChanceHard = .45f; 
+			spawnChanceEasy = .75f; 
 
 		} //end of else if
 

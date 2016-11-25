@@ -72,6 +72,8 @@ public class PickupAmmo : MonoBehaviour {
 				else if (hit.collider.tag == "Trash") {
 					heldAmmo.Clear ();
 
+					updateText ();
+
 					currentMoveSpeed = initialMoveSpeed;
 					GetComponent<Movement> ().movespeed = currentMoveSpeed;
 				
