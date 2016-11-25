@@ -4,6 +4,8 @@ using System.Collections;
 //this script deals with the downward movement of the spawned enemies 
 
 public class EnemyMovement : MonoBehaviour {
+	public string enemyIdentity;
+
 	public float speed;
 
 	void Start () {
@@ -19,6 +21,6 @@ public class EnemyMovement : MonoBehaviour {
 	}
 
 	void goToPlayer() { //makes enemies move down at the speed variable specified 
-		transform.position += Vector3.forward *speed* Time.deltaTime;
+		transform.position += -Vector3.forward *speed* Time.deltaTime;
 	}
 }

@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
 		StartCoroutine (SpawnWaves());
 		SetWaveNumber (); 
 
-		spawnChanceHard = .10f;
+		spawnChanceHard = .5f;
 		spawnChanceEasy = .40f; 
 
 	}//end of start 
@@ -52,8 +52,8 @@ public class Spawner : MonoBehaviour
 			spawnChanceEasy = .50f; 
 		} else if (waveNo > 10) {
 
-			spawnChanceHard = .30f; 
-			spawnChanceEasy = .60f; 
+			spawnChanceHard = .45f; 
+			spawnChanceEasy = .75f; 
 
 		} //end of else if
 
@@ -103,7 +103,7 @@ public class Spawner : MonoBehaviour
 
 				enemyIndex = Random.Range (0, spawnArray.Length);
 				//Instantiate (mediumEnemies[UnityEngine.Random.Range(0, mediumEnemies.Length - 1)], spawnPosition, spawnRotation); //instantiate enemy
-				Instantiate (spawnArray [enemyIndex], spawnPosition, spawnRotation);
+				Instantiate (spawnArray [enemyIndex], spawnPosition, Quaternion.identity);
 				yield return new WaitForSeconds (spawnWait);
 
 			} //end of for in i = 0 
