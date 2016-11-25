@@ -26,6 +26,9 @@ public class HealthManager : MonoBehaviour {
 			SceneManager.LoadScene ("GameOver"); 
 
 		}
+		if (Input.GetKey (KeyCode.R)) {
+			SceneManager.LoadScene (0);
+		}
 	
 	}
 
