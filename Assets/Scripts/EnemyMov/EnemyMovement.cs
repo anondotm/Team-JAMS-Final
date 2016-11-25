@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//this script deals with the downward movement of the spawned enemies 
+//this script deals with movement of the spawned enemies 
 
 public class EnemyMovement : MonoBehaviour {
-	public string enemyIdentity;
 
+	public string enemyIdentity;
 	public float speed;
 
 	void Start () {
 
-		speed = 1.5f; //+ PlayerPrefs.GetInt ("enemySpeedBonus"); //speed will increase every level
+
 	}
 
 	// Update is called once per frame
