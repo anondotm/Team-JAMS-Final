@@ -8,10 +8,16 @@ public class PickupAmmo : MonoBehaviour {
 	//object referencing cannon
 	public GameObject cannonObject;
 
+	//object referencing exclamation
+	public GameObject promptObject;
+
 	// records initial movement speed for character on start
 	float initialMoveSpeed = 0;
 	// gets and stores curren movespeed from "Movement" script so we can manipulate it based on ammoHeld
 	public float currentMoveSpeed;
+
+	//GameObject currently being "looked" at
+	public GameObject currentHighlight;
 
 
 	//list that stores player's "held" ammo
@@ -46,11 +52,21 @@ public class PickupAmmo : MonoBehaviour {
 		Ray ammoCheckRay = new Ray (transform.position, transform.forward);
 		RaycastHit hit;
 		if (Physics.SphereCast (ammoCheckRay, .5f, out hit, 2.5f)) {
+
+			currentHighlight = hit.collider.gameObject;
+
+//			GameObject lookingAt = hit.collider.gameObject;
+//
+//			Color colorAlpha = lookingAt.GetComponent<Renderer> ().material.color;
+//			colorAlpha.a -= .2f;
+//			lookingAt.GetComponent<Renderer> ().material.color = colorAlpha;
+
 			
 			//Debug.Log ("There's something there...");
 
 			//if the raycast hits an ammo repository (checks if object has AmmoSource script
 			if (hit.collider.GetComponent<AmmoSource> () == true) {
+				
 
 				if (Input.GetKeyDown (KeyCode.Space)) {
 
@@ -75,14 +91,22 @@ public class PickupAmmo : MonoBehaviour {
 						//updateText ();
 
 
-						currentMoveSpeed -= (initialMoveSpeed * .2f);
+						currentMoveSpeed -= (initialMoveSpeed * .1f);
 						this.gameObject.GetComponent<CharacterMovement> ().playerSpeed = currentMoveSpeed;
 
 					}
 
 				} else {
+					
 					if (heldAmmoSize < 3) {
+						promptObject.SetActive (true);
+						currentHighlight.transform.Find ("Highlight").gameObject.SetActive (true);
 						heldAmmoPosition [heldAmmoSize].gameObject.SetActive (true);
+					} 
+
+					else {
+						promptObject.SetActive (false);
+						currentHighlight.transform.Find ("Highlight").gameObject.SetActive (false);
 					}
 				}
 
@@ -95,6 +119,14 @@ public class PickupAmmo : MonoBehaviour {
 
 			//players can use the trash to drop off or "clear" held ammo
 			else if (hit.collider.tag == "Trash") {
+
+				if (heldAmmoSize > 0) {
+					currentHighlight.transform.Find ("Highlight").gameObject.SetActive (true);
+					promptObject.SetActive (true);
+				} else {
+					currentHighlight.transform.Find ("Highlight").gameObject.SetActive (false);
+					promptObject.SetActive (false);
+				}
 
 				if (Input.GetKeyDown (KeyCode.Space)) {
 					heldAmmo.Clear ();
@@ -113,6 +145,14 @@ public class PickupAmmo : MonoBehaviour {
 			//when players interact with the dumbwaiter, the game actually just "adds" the player's ammo to the Cannon Object's ammo list ("cannonAmmo");
 			else if (hit.collider.tag == "DumbWaiter") {
 
+				if (heldAmmoSize > 0) {
+					currentHighlight.transform.Find ("Highlight").gameObject.SetActive (true);
+					promptObject.SetActive (true);
+				} else {
+					currentHighlight.transform.Find ("Highlight").gameObject.SetActive (false);
+					promptObject.SetActive (false);
+				}
+
 				if (Input.GetKeyDown (KeyCode.Space)) {
 					cannonObject.GetComponent<ShootBullet> ().cannonAmmo.AddRange (heldAmmo);
 					heldAmmo.Clear ();
@@ -129,9 +169,10 @@ public class PickupAmmo : MonoBehaviour {
 
 			}
 
-			//whenever you press space, updates the text
-			//updateText ();
+	
 		} else {
+			promptObject.SetActive (false);
+			currentHighlight.transform.Find ("Highlight").gameObject.SetActive (false);
 			if (heldAmmoSize < 3) {
 				heldAmmoPosition [heldAmmoSize].gameObject.SetActive (false);
 			}
