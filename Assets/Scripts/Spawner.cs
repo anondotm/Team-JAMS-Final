@@ -73,8 +73,7 @@ public class Spawner : MonoBehaviour
 		
 
 
-	IEnumerator SpawnWaves () //actual coroutine that spawns the enemies
-	{
+	IEnumerator SpawnWaves () { //actual coroutine that spawns the enemies
 		yield return new WaitForSeconds (startWait); //startWait is how many seconds before first enemy appears 
 		while (true) {
 
