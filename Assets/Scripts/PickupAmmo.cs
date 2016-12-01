@@ -44,10 +44,6 @@ public class PickupAmmo : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKey (KeyCode.F)) {
-			//instantiateAmmo ();
-		}
-
 		//create and project a spherecast
 		Ray ammoCheckRay = new Ray (transform.position, transform.forward);
 		RaycastHit hit;
