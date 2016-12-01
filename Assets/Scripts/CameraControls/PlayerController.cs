@@ -25,12 +25,6 @@ public class PlayerController : MonoBehaviour {
 	bool canMove = true;
 
 
-	// Use this for initialization
-	void Start () {
-		//Initialize the character controller from the player character
-		//cController = GetComponent<CharacterController> ();
-	}
-
 	// Update is called once per frame
 	void Update () {
 		//First we lock the mouse into the screen
