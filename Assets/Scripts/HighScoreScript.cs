@@ -26,7 +26,7 @@ public class HighScoreScript : MonoBehaviour {
 	void ShowHighScore () {
 
 
-		HighScore.text = "You eliminated" + PlayerPrefs.GetInt ("HighScore").ToString () + "viruses!"; //highest score is taken 
+		HighScore.text = "You eliminated " + PlayerPrefs.GetInt ("HighScore").ToString () + " viruses!"; //highest score is taken 
 
 	}
 
