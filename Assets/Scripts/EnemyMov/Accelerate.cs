@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//this script deals with the downward movement of the spawned enemies 
+public class Accelerate : MonoBehaviour {
 
-public class EnemyMovement : MonoBehaviour {
 	public string enemyIdentity;
+	Renderer enemyRend; 
+	bool isCanonLooking = false; 
+	public float accelSpeed; 
 
-	public float speed;
-	Renderer enemyRend;
-	bool isCanonLooking = false;
+	// Update is called once per frame
 
 	void Start () {
 		enemyRend = GetComponent<Renderer> ();
-		speed = 1.5f; //+ PlayerPrefs.GetInt ("enemySpeedBonus"); //speed will increase every level
+		accelSpeed = 1.4f; //+ PlayerPrefs.GetInt ("enemySpeedBonus"); //speed will increase every level
 	}
 
 	void Update (){
@@ -23,11 +23,13 @@ public class EnemyMovement : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
+
 		goToPlayer(); //call function 
+		accelSpeed += .01f; 
 	}
 
 	void goToPlayer() { //makes enemies move down at the speed variable specified 
-		transform.position += -Vector3.forward *speed* Time.deltaTime;
+		transform.position += -Vector3.forward *accelSpeed* Time.deltaTime;
 	}
 
 	void OnTriggerEnter( Collider canon){

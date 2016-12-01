@@ -51,18 +51,19 @@ public class PickupAmmo : MonoBehaviour {
 		//create and project a spherecast
 		Ray ammoCheckRay = new Ray (transform.position, transform.forward);
 		RaycastHit hit;
+
 		if (Physics.SphereCast (ammoCheckRay, .5f, out hit, 2.5f)) {
 
+			//stores the object that is currently being viewed in "currentHighlight"
 			currentHighlight = hit.collider.gameObject;
 
-			//if the raycast hits an ammo repository (checks if object has AmmoSource script
+			//if the spherecast hits an AMMO REPOSITORY (checks if object has AmmoSource script)
 			if (hit.collider.GetComponent<AmmoSource> () == true) {
 				
 
 				if (Input.GetKeyDown (KeyCode.Space)) {
 
-
-					//check if player is not holding 3+ ammo
+					//check if player can pick up ammo (hands aren't full)
 					if (heldAmmoSize < 3) {
 						
 						if (hit.collider.tag == "Ammo1") {
@@ -77,21 +78,23 @@ public class PickupAmmo : MonoBehaviour {
 							heldAmmo.Add ("Blue");
 							instantiateAmmo (physicalBlue);
 							updateText ();
-						} 
+						}
 
-						//updateText ();
-
-
-						currentMoveSpeed -= (initialMoveSpeed * .1f);
-						this.gameObject.GetComponent<CharacterMovement> ().playerSpeed = currentMoveSpeed;
+						//COMMENTED OUT WEIGHT-DEPENDENT SPEED
+						//currentMoveSpeed -= (initialMoveSpeed * .1f);
+						//this.gameObject.GetComponent<CharacterMovement> ().playerSpeed = currentMoveSpeed;
 
 					}
 
-				} else {
-					
+				} 
+
+				//If the player is simply "looking" at the AMMO REPOSITORY (activate feedback)
+				else {
+
+					//feedback only activates if the player can pick something up
 					if (heldAmmoSize < 3) {
-						promptObject.SetActive (true);
-						currentHighlight.transform.Find ("Highlight").gameObject.SetActive (true);
+						promptObject.SetActive (true); //activates exclamation mark
+						currentHighlight.transform.Find ("Highlight").gameObject.SetActive (true); //makes visible the objects "highlight"
 						heldAmmoPosition [heldAmmoSize].gameObject.SetActive (true);
 					} 
 
@@ -145,6 +148,7 @@ public class PickupAmmo : MonoBehaviour {
 				}
 
 				if (Input.GetKeyDown (KeyCode.Space)) {
+					//transfers ammo to player 1 and 
 					cannonObject.GetComponent<ShootBullet> ().cannonAmmo.AddRange (heldAmmo);
 					heldAmmo.Clear ();
 					clearPhysicalAmmo ();
@@ -190,6 +194,7 @@ public class PickupAmmo : MonoBehaviour {
 
 	}
 
+	//spawns ammo in the players hands after interactoin with repository
 	public void instantiateAmmo(GameObject ammoType) {
 
 		GameObject newStack = (GameObject)Instantiate (ammoType, heldAmmoPosition [heldAmmoSize].position, Quaternion.identity);
@@ -198,6 +203,7 @@ public class PickupAmmo : MonoBehaviour {
 
 	}
 
+	//destroys the ammo in the player hand
 	public void clearPhysicalAmmo () {
 		for (int i = 0; i < physicalAmmoList.Count; i++) {
 			Destroy (physicalAmmoList [i]);

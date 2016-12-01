@@ -27,7 +27,7 @@ public class DestroyMyself : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision c) {
-		if (c.gameObject.tag == "enemy") {
+		if (c.gameObject.tag == "wall") {
 			Debug.Log ("destruction via collision!"); 
 			Destruction (); 
 		}
