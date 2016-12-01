@@ -5,14 +5,13 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour {
 	public string enemyIdentity;
-
 	public float speed;
 	Renderer enemyRend;
 	bool isCanonLooking = false;
 
 	void Start () {
 		enemyRend = GetComponent<Renderer> ();
-		speed = 1.5f; //+ PlayerPrefs.GetInt ("enemySpeedBonus"); //speed will increase every level
+
 	}
 
 	void Update (){
