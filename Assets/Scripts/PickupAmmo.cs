@@ -55,15 +55,6 @@ public class PickupAmmo : MonoBehaviour {
 
 			currentHighlight = hit.collider.gameObject;
 
-//			GameObject lookingAt = hit.collider.gameObject;
-//
-//			Color colorAlpha = lookingAt.GetComponent<Renderer> ().material.color;
-//			colorAlpha.a -= .2f;
-//			lookingAt.GetComponent<Renderer> ().material.color = colorAlpha;
-
-			
-			//Debug.Log ("There's something there...");
-
 			//if the raycast hits an ammo repository (checks if object has AmmoSource script
 			if (hit.collider.GetComponent<AmmoSource> () == true) {
 				
