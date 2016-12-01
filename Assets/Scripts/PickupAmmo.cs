@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class PickupAmmo : MonoBehaviour {
 
+//This script is for Player2
+
 	//object referencing cannon
 	public GameObject cannonObject;
 
