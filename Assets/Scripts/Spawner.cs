@@ -57,7 +57,9 @@ public class Spawner : MonoBehaviour
 			spawnChanceHard = .40f; 
 			spawnChanceEasy = .80f; 
 
-		} //end of else if
+		} //end of else if 
+
+
 
 		if(Input.GetKeyDown(KeyCode.T)){
 

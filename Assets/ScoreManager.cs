@@ -4,11 +4,14 @@ using System.Collections;
 
 public class ScoreManager : MonoBehaviour {
 
+	//this script manages the Highscore of the player 
+ 
 	int score = 0;
 	public Text scoreText;
 	// Use this for initialization
 	void Start () {
 		scoreText.text = "SCORE: 0";
+		PlayerPrefs.SetInt("HighScore", 0);
 	}
 	
 	// Update is called once per frame
@@ -19,5 +22,12 @@ public class ScoreManager : MonoBehaviour {
 	public void scoreUpdate(int added){
 		score += added;
 		scoreText.text = "SCORE: " + score.ToString ();
+
+		if(score > PlayerPrefs.GetInt("HighScore")) {
+
+			PlayerPrefs.SetInt("HighScore", score); 
+
+		}
+
 	}
 }
