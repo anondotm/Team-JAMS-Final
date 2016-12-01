@@ -23,8 +23,8 @@ public class Spawner : MonoBehaviour
 	public float spawnWait; //how many seconds between each enemy 
 	public float startWait; //how many seconds before each first enemy appears 
 	public float waveWait; //how much between each wave
-	public float spawnChanceHard; //if no. generated below this, hard enemy is spawned 
-	public float spawnChanceEasy; //if no. generated above this, easy is spawned. medium is for in between them 
+	float spawnChanceHard; //if no. generated below this, hard enemy is spawned 
+	float spawnChanceEasy; //if no. generated above this, easy is spawned. medium is for in between them 
 
 	int waveNo = 1; //number of waves passed
 
@@ -37,8 +37,9 @@ public class Spawner : MonoBehaviour
 		StartCoroutine (SpawnWaves());
 		SetWaveNumber (); 
 
-		spawnChanceHard = .5f;
-		spawnChanceEasy = .40f; 
+		spawnChanceHard = .05f; 
+		spawnChanceEasy = .20f; 
+
 
 	}//end of start 
 
@@ -49,11 +50,12 @@ public class Spawner : MonoBehaviour
 		if (waveNo > 5 && waveNo < 10) {
 
 			spawnChanceHard = .20f; 
-			spawnChanceEasy = .50f; 
+			spawnChanceEasy = .60f; 
+
 		} else if (waveNo > 10) {
 
-			spawnChanceHard = .45f; 
-			spawnChanceEasy = .75f; 
+			spawnChanceHard = .40f; 
+			spawnChanceEasy = .80f; 
 
 		} //end of else if
 
@@ -65,7 +67,7 @@ public class Spawner : MonoBehaviour
 	} //end of update 
 
 
-	void TestingNumbers() {
+	void TestingNumbers() { //PRESS T to see the spawn chances of hard and easy enemies 
 
 		Debug.Log("spawnChanceHard = " + spawnChanceHard); 
 		Debug.Log ("spawnChanceEasy = " + spawnChanceEasy); 
@@ -74,8 +76,7 @@ public class Spawner : MonoBehaviour
 		
 
 
-	IEnumerator SpawnWaves () //actual coroutine that spawns the enemies
-	{
+	IEnumerator SpawnWaves () { //actual coroutine that spawns the enemies
 		yield return new WaitForSeconds (startWait); //startWait is how many seconds before first enemy appears 
 		while (true) {
 
