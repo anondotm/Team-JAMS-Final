@@ -10,6 +10,11 @@ public class DestroyMyself : MonoBehaviour {
 	public ScreenShake shakeScreen;
 	public ScreenShake shakeScreen2;
 
+	public GameObject background1;
+	public GameObject background2;
+	Animator backgroundAnimator1;
+	Animator backgroundAnimator2;
+
 	// Use this for initialization
 	void Start () {
 
@@ -21,6 +26,12 @@ public class DestroyMyself : MonoBehaviour {
 		shakeScreen = MainCamera.GetComponent<ScreenShake> ();
 		SecondCamera = GameObject.FindGameObjectWithTag ("SecondCamera");
 		shakeScreen2 = SecondCamera.GetComponent<ScreenShake> ();
+
+		background1 = GameObject.FindGameObjectWithTag ("background1");
+		background2 = GameObject.FindGameObjectWithTag ("background2");
+		backgroundAnimator1 = background1.GetComponent<Animator> ();
+		backgroundAnimator2 = background2.GetComponent<Animator> ();
+
 
 	}
 	
@@ -58,6 +69,9 @@ public class DestroyMyself : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 
 		if(other.gameObject.tag == "enemy") {
+			other.GetComponent<AudioSource> ().Play();
+			backgroundAnimator1.SetTrigger ("Hit");
+			backgroundAnimator2.SetTrigger ("Hit");
 			//Shake the cameras.
 			shakeScreen.StartCoroutine (shakeScreen.ShakeCam ());
 			shakeScreen2.StartCoroutine (shakeScreen2.ShakeCam ());
