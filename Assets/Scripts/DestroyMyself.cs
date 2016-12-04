@@ -69,6 +69,7 @@ public class DestroyMyself : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 
 		if(other.gameObject.tag == "enemy") {
+			other.GetComponent<AudioSource> ().Play();
 			backgroundAnimator1.SetTrigger ("Hit");
 			backgroundAnimator2.SetTrigger ("Hit");
 			//Shake the cameras.
