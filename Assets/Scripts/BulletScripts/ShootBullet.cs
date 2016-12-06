@@ -23,6 +23,9 @@ public class ShootBullet : MonoBehaviour {
 	//We know what bullets to spawn. Probably will turn this into an array for all the diff bullets
 	public GameObject bullet;
 
+	//Setting for tutorial level;
+	public bool isTutorial;
+
 	GameObject player;
 	Transform playerT;
 
@@ -80,13 +83,14 @@ public class ShootBullet : MonoBehaviour {
 		else {
 			nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [3];
 		} 
+		if (!isTutorial) {
+			//updates UI element with heldAmmo contents!
+			heldAmmoText.GetComponent<Text> ().text = "Ammo held:";
 
-		//updates UI element with heldAmmo contents!
-		/*heldAmmoText.GetComponent<Text>().text = "Ammo held:";
-
-		for (int i = 0; i <= cannonAmmo.Count; i++) {
-			heldAmmoText.GetComponent<Text> ().text += " " + cannonAmmo [i];
-		}*/
+			for (int i = 0; i <= cannonAmmo.Count; i++) {
+				heldAmmoText.GetComponent<Text> ().text += " " + cannonAmmo [i];
+			}
+		}
 	}
 
 
