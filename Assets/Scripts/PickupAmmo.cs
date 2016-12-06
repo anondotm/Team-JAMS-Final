@@ -106,13 +106,14 @@ public class PickupAmmo : MonoBehaviour {
 
 	void updateText() {
 		//updates UI element with heldAmmo contents!
-		heldAmmoText.GetComponent<Text>().text = "Ammo held:";
-
+		//heldAmmoText.GetComponent<Text>().text = "Ammo held:";
+		/*
 		if (heldAmmo.Count > 0) {
 			for (int i = 0; i <= heldAmmoSize; i++) {
 				heldAmmoText.GetComponent<Text> ().text += " " + heldAmmo [i];
 			}
 		}
+		*/
 
 	}
 }

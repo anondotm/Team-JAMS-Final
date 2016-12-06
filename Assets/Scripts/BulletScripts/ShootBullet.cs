@@ -38,6 +38,7 @@ public class ShootBullet : MonoBehaviour {
 		//gets the transform of the camera
 		playerT = player.GetComponent<Transform> ();
 		//theAmmo = ammoContainer.GetComponent<AmmoHolder> ();
+
 	}
 
 	// Update is called once per frame
@@ -81,10 +82,12 @@ public class ShootBullet : MonoBehaviour {
 		} 
 
 		//updates UI element with heldAmmo contents!
-		heldAmmoText.GetComponent<Text>().text = "Ammo held:";
+		/*heldAmmoText.GetComponent<Text>().text = "Ammo held:";
 
 		for (int i = 0; i <= cannonAmmo.Count; i++) {
 			heldAmmoText.GetComponent<Text> ().text += " " + cannonAmmo [i];
-		}
+		}*/
 	}
+
+
 }
