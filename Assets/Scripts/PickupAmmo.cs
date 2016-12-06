@@ -7,6 +7,7 @@ public class PickupAmmo : MonoBehaviour {
 
 //This script is for Player2
 
+
 	//object referencing cannon
 	public GameObject cannonObject;
 
@@ -20,6 +21,8 @@ public class PickupAmmo : MonoBehaviour {
 
 	//GameObject currently being "looked" at
 	public GameObject currentHighlight;
+	//GameObject currently being "touched"
+	public GameObject touchingObject;
 
 
 	//list that stores player's "held" ammo
@@ -45,6 +48,116 @@ public class PickupAmmo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		//trigger based picking up/dropping off
+
+		if (gameObject.name == "Zone Ammo Character") {
+			if (touchingObject != null) {
+				
+				if (touchingObject.GetComponent<AmmoSource> () == true) {
+
+					if (Input.GetKeyDown (KeyCode.Space)) {
+
+						//check if player can pick up ammo (hands aren't full)
+						if (heldAmmoSize < 3) {
+
+							if (touchingObject.tag == "Ammo1") {
+								heldAmmo.Add ("Red");
+								instantiateAmmo (physicalRed);
+								updateText ();
+							} else if (touchingObject.tag == "Ammo2") {
+								heldAmmo.Add ("Green");
+								instantiateAmmo (physicalGreen);
+								updateText ();
+							} else if (touchingObject.tag == "Ammo3") {
+								heldAmmo.Add ("Blue");
+								instantiateAmmo (physicalBlue);
+								updateText ();
+							}
+
+							//COMMENTED OUT WEIGHT-DEPENDENT SPEED
+							//currentMoveSpeed -= (initialMoveSpeed * .1f);
+							//this.gameObject.GetComponent<CharacterMovement> ().playerSpeed = currentMoveSpeed;
+
+						}
+
+					} else {
+
+						//feedback only activates if the player can pick something up
+						if (heldAmmoSize < 3) {
+							promptObject.SetActive (true); //activates exclamation mark
+							//currentHighlight.transform.Find ("Highlight").gameObject.SetActive (true); //makes visible the objects "highlight"
+							heldAmmoPosition [heldAmmoSize].gameObject.SetActive (true);
+						} else {
+							promptObject.SetActive (false);
+							//currentHighlight.transform.Find ("Highlight").gameObject.SetActive (false);
+						}
+					}
+						
+				} 			
+
+				//when players interact with the dumbwaiter, the game actually just "adds" the player's ammo to the Cannon Object's ammo list ("cannonAmmo");
+				else if (touchingObject.tag == "DumbWaiter") {
+
+					if (heldAmmoSize > 0) {
+						//currentHighlight.transform.Find ("Highlight").gameObject.SetActive (true);
+						promptObject.SetActive (true);
+					} else {
+						//currentHighlight.transform.Find ("Highlight").gameObject.SetActive (false);
+						promptObject.SetActive (false);
+					}
+
+					if (Input.GetKeyDown (KeyCode.Space)) {
+						//transfers ammo to player 1 and 
+						cannonObject.GetComponent<ShootBullet> ().cannonAmmo.AddRange (heldAmmo);
+						heldAmmo.Clear ();
+						//clearPhysicalAmmo ();
+						sendPhysicalAmmo();
+
+						currentMoveSpeed = initialMoveSpeed;
+						this.gameObject.GetComponent<CharacterMovement> ().playerSpeed = currentMoveSpeed;
+
+						updateText ();
+
+						cannonObject.GetComponent<ShootBullet> ().textUpdate ();
+
+					}
+
+				}
+
+				else if (touchingObject.tag == "Trash") {
+
+					if (heldAmmoSize > 0) {
+						//currentHighlight.transform.Find ("Highlight").gameObject.SetActive (true);
+						promptObject.SetActive (true);
+					} else {
+						//currentHighlight.transform.Find ("Highlight").gameObject.SetActive (false);
+						promptObject.SetActive (false);
+					}
+
+					if (Input.GetKeyDown (KeyCode.Space)) {
+						heldAmmo.Clear ();
+						clearPhysicalAmmo ();
+
+						currentMoveSpeed = initialMoveSpeed;
+						this.gameObject.GetComponent<CharacterMovement> ().playerSpeed = currentMoveSpeed;
+
+						updateText ();
+					}
+
+				}
+
+			} else {
+
+				if (heldAmmoSize < 3) {
+					heldAmmoPosition [heldAmmoSize].gameObject.SetActive (false);
+				}
+			}
+		}
+
+
+		//Raycast-based picking up/dropping off
+		else {
 
 		//create and project a spherecast
 		Ray ammoCheckRay = new Ray (transform.position, transform.forward);
@@ -170,14 +283,24 @@ public class PickupAmmo : MonoBehaviour {
 				heldAmmoPosition [heldAmmoSize].gameObject.SetActive (false);
 			}
 		}
-
 		}
+
+	}
 
 	void FixedUpdate () {
 
 		//updates heldAmmoSize with length/size of heldAmmo
 		heldAmmoSize = heldAmmo.Count;
 
+	}
+
+	void OnTriggerEnter (Collider entered) {
+		touchingObject = entered.gameObject;
+	}
+
+	void OnTriggerExit (Collider exited) {
+		touchingObject = null;
+		promptObject.SetActive (false);
 	}
 
 	void updateText() {
@@ -206,6 +329,14 @@ public class PickupAmmo : MonoBehaviour {
 		for (int i = 0; i < physicalAmmoList.Count; i++) {
 			Destroy (physicalAmmoList [i]);
 		}
+
 		physicalAmmoList.Clear ();
+	}
+
+	//sends ammo to the beyond!
+	public void sendPhysicalAmmo () {
+		for (int i = 0; i < physicalAmmoList.Count; i++) {
+			physicalAmmoList [i].GetComponent<HeldAmmoScript> ().StartCoroutine ("MoveCoroutine");
+		}
 	}
 }
