@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class PickupAmmo : MonoBehaviour {
 
-//This script is for Player2
+//SCRIPT BELONGING TO PLAYER 2
 
 
 	//object referencing cannon
@@ -14,15 +14,11 @@ public class PickupAmmo : MonoBehaviour {
 	//object referencing exclamation
 	public GameObject promptObject;
 
-	// records initial movement speed for character on start
-	float initialMoveSpeed = 0;
-	// gets and stores curren movespeed from "Movement" script so we can manipulate it based on ammoHeld
-	public float currentMoveSpeed;
-
 	//GameObject currently being "looked" at
 	public GameObject currentHighlight;
 	//GameObject currently being "touched"
 	public GameObject touchingObject;
+	public Vector3 touchingObjectScale;
 
 
 	//list that stores player's "held" ammo
@@ -39,17 +35,9 @@ public class PickupAmmo : MonoBehaviour {
 	public Transform[] heldAmmoPosition;
 	public List<GameObject> physicalAmmoList = new List<GameObject>();
 
-
-	void Start () {
-		//stores intiial movement speed of character so we can manipulate it based on ammoHeld
-		initialMoveSpeed = this.gameObject.GetComponent<CharacterMovement> ().playerSpeed;
-		currentMoveSpeed = initialMoveSpeed;
-	}
-	
-	// Update is called once per frame
 	void Update () {
 
-		//trigger based picking up/dropping off
+		//VERSION 1: COLLISION-TRIGGER based picking up/dropping off
 
 		if (gameObject.name == "Zone Ammo Character") {
 			if (touchingObject != null) {
@@ -74,11 +62,7 @@ public class PickupAmmo : MonoBehaviour {
 								instantiateAmmo (physicalBlue);
 								updateText ();
 							}
-
-							//COMMENTED OUT WEIGHT-DEPENDENT SPEED
-							//currentMoveSpeed -= (initialMoveSpeed * .1f);
-							//this.gameObject.GetComponent<CharacterMovement> ().playerSpeed = currentMoveSpeed;
-
+								
 						}
 
 					} else {
@@ -113,10 +97,7 @@ public class PickupAmmo : MonoBehaviour {
 						heldAmmo.Clear ();
 						//clearPhysicalAmmo ();
 						sendPhysicalAmmo();
-
-						currentMoveSpeed = initialMoveSpeed;
-						this.gameObject.GetComponent<CharacterMovement> ().playerSpeed = currentMoveSpeed;
-
+				
 						updateText ();
 
 						cannonObject.GetComponent<ShootBullet> ().textUpdate ();
@@ -139,9 +120,6 @@ public class PickupAmmo : MonoBehaviour {
 						heldAmmo.Clear ();
 						clearPhysicalAmmo ();
 
-						currentMoveSpeed = initialMoveSpeed;
-						this.gameObject.GetComponent<CharacterMovement> ().playerSpeed = currentMoveSpeed;
-
 						updateText ();
 					}
 
@@ -155,8 +133,10 @@ public class PickupAmmo : MonoBehaviour {
 			}
 		}
 
+		//**********************************************************************************************************************************************
 
-		//Raycast-based picking up/dropping off
+		//VERSION 2: SPHERECAST based picking up/dropping off
+
 		else {
 
 		//create and project a spherecast
@@ -237,9 +217,6 @@ public class PickupAmmo : MonoBehaviour {
 					heldAmmo.Clear ();
 					clearPhysicalAmmo ();
 
-					currentMoveSpeed = initialMoveSpeed;
-					this.gameObject.GetComponent<CharacterMovement> ().playerSpeed = currentMoveSpeed;
-
 					updateText ();
 				}
 
@@ -262,10 +239,7 @@ public class PickupAmmo : MonoBehaviour {
 					//transfers ammo to player 1 and 
 					cannonObject.GetComponent<ShootBullet> ().cannonAmmo.AddRange (heldAmmo);
 					heldAmmo.Clear ();
-					clearPhysicalAmmo ();
-
-					currentMoveSpeed = initialMoveSpeed;
-					this.gameObject.GetComponent<CharacterMovement> ().playerSpeed = currentMoveSpeed;
+					sendPhysicalAmmo ();
 
 					updateText ();
 
@@ -286,7 +260,7 @@ public class PickupAmmo : MonoBehaviour {
 		}
 
 	}
-
+		
 	void FixedUpdate () {
 
 		//updates heldAmmoSize with length/size of heldAmmo
@@ -294,13 +268,21 @@ public class PickupAmmo : MonoBehaviour {
 
 	}
 
+
+	//**********************************************************************************
+
+	//OTHER FUNCTIONS
+
 	void OnTriggerEnter (Collider entered) {
 		touchingObject = entered.gameObject;
+		touchingObjectScale = touchingObject.transform.localScale;
+		touchingObject.transform.localScale *= 1.1f;
 	}
 
 	void OnTriggerExit (Collider exited) {
 		touchingObject = null;
 		promptObject.SetActive (false);
+		exited.gameObject.transform.localScale = touchingObjectScale;
 	}
 
 	void updateText() {
@@ -339,4 +321,5 @@ public class PickupAmmo : MonoBehaviour {
 			physicalAmmoList [i].GetComponent<HeldAmmoScript> ().StartCoroutine ("MoveCoroutine");
 		}
 	}
+		
 }
