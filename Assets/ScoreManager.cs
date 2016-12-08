@@ -11,7 +11,7 @@ public class ScoreManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		scoreText.text = "SCORE: 0";
-		PlayerPrefs.SetInt("HighScore", 0);
+
 	}
 	
 	// Update is called once per frame
@@ -32,7 +32,15 @@ public class ScoreManager : MonoBehaviour {
 		score += added;
 		scoreText.text = "SCORE: " + score.ToString ();
 
-		if(score > PlayerPrefs.GetInt("HighScore")) {
+		if (PlayerPrefs.HasKey ("HighScore")) {
+
+			if (score > PlayerPrefs.GetInt ("HighScore")) {
+
+				PlayerPrefs.SetInt ("HighScore", score); 
+
+			} 
+
+		} else {
 
 			PlayerPrefs.SetInt("HighScore", score); 
 
