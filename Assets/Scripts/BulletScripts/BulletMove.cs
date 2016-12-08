@@ -28,7 +28,7 @@ public class BulletMove : MonoBehaviour {
 	void OnTriggerEnter( Collider enemy){
 		//Destroy the bullet and enemy if they collide. ENEMY NEEDS TO BE TRIGGER!!!!!!
 		if (enemy.tag == "enemy") {
-			if (bulletIdentity == enemy.GetComponent<EnemyMovement> ().enemyIdentity) {
+			if (bulletIdentity == enemy.GetComponent<EnemyIdentityScript> ().enemyIdentity) {
 				Destroy (enemy.gameObject);
 				GameManager.GetComponent<ScoreManager> ().scoreUpdate (1);
 			}
