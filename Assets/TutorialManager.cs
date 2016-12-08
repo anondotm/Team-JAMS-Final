@@ -32,6 +32,7 @@ public class TutorialManager : MonoBehaviour {
 		while (Input.GetKeyDown(KeyCode.Space) == false) {
 			yield return 0;
 		}
+		yield return 0;
 		Debug.Log ("picked up");
 		botScreenUI.GetComponent<Text>().text = "Nice! Okay, now go and \nload it into the cannon with SPACE!";
 		while (Input.GetKeyDown(KeyCode.Space) == false) {
@@ -59,9 +60,9 @@ public class TutorialManager : MonoBehaviour {
 		for (int i = 0; i >= 4; i++) {
 			if (Input.GetKeyDown (KeyCode.Space)) {
 				i++;
-			} else {
-				yield return 0;
-			}
+
+			} 
+			yield return 0;
 		}
 		botScreenUI.GetComponent<Text> ().text = null;
 		topScreenUI.GetComponent<Text> ().text = "Hopefully you have the right ammo! Shoot 'em down!";
