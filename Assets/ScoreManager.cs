@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour {
 
 	//this script manages the Highscore of the player 
  
-	int score = 0;
+	public int score = 0;
 	public Text scoreText;
 	// Use this for initialization
 	void Start () {
