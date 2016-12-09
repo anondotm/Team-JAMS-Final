@@ -236,14 +236,16 @@ public class PickupAmmo : MonoBehaviour {
 				}
 
 				if (Input.GetKeyDown (KeyCode.Space)) {
-					//transfers ammo to player 1 and 
-					cannonObject.GetComponent<ShootBullet> ().cannonAmmo.AddRange (heldAmmo);
-					heldAmmo.Clear ();
-					sendPhysicalAmmo ();
+						if (cannonObject.GetComponent<ShootBullet> ().cannonAmmo.Count < 7) {
+							//transfers ammo to player 1
+							cannonObject.GetComponent<ShootBullet> ().cannonAmmo.AddRange (heldAmmo);
+							heldAmmo.Clear ();
+							sendPhysicalAmmo ();
 
-					updateText ();
+							updateText ();
 
-					cannonObject.GetComponent<ShootBullet> ().textUpdate ();
+							cannonObject.GetComponent<ShootBullet> ().textUpdate ();
+						}
 
 				}
 
