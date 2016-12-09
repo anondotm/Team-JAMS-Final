@@ -37,8 +37,8 @@ public class Spawner : MonoBehaviour
 		StartCoroutine (SpawnWaves());
 		SetWaveNumber (); 
 
-		spawnChanceHard = .05f; 
-		spawnChanceEasy = .20f; 
+		spawnChanceHard = .00f; 
+		spawnChanceEasy = .05f; 
 
 
 	}//end of start 
@@ -47,17 +47,26 @@ public class Spawner : MonoBehaviour
 
 		randomChance = Random.Range (0f, 1f);
 
-		if (waveNo > 5 && waveNo < 10) {
+		if (waveNo > 3 && waveNo < 6) {
 
-			spawnChanceHard = .20f; 
-			spawnChanceEasy = .60f; 
+			spawnChanceHard = .10f; 
+			spawnChanceEasy = .25f; 
+			spawnWait = 3; 
+
+		} else if (waveNo > 6 && waveNo < 10) {
+
+			spawnChanceHard = .15f; 
+			spawnChanceEasy = .50f; 
+			hazardCount = 4;  
 
 		} else if (waveNo > 10) {
 
-			spawnChanceHard = .40f; 
-			spawnChanceEasy = .80f; 
+			spawnChanceHard = .25f;
+			spawnChanceEasy = .75f; 
+			spawnWait = 2; 
+			hazardCount = 5; 
 
-		} //end of else if
+		}
 
 		if(Input.GetKeyDown(KeyCode.T)){
 
