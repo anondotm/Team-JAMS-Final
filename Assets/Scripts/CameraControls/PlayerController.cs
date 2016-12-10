@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//First we lock the mouse into the screen
+		// ROBERT: Screen.lockCursor is deprecated, use Cursor.LockState in the future
 		Screen.lockCursor = true;
 		//TODO: Consider adding the possibility for the player to unlock the mouse from the screen; and then back again
 		if (canMove) {
@@ -71,6 +72,8 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	// ROBERT: if you want getters and setters, use C# properties instead
+	// see https://www.dotnetperls.com/property
 	public bool getCanMove(){
 		return canMove;
 	}
