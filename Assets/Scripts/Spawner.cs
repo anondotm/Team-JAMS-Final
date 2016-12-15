@@ -39,7 +39,7 @@ public class Spawner : MonoBehaviour
 
 		spawnChanceHard = .00f; 
 		spawnChanceEasy = .05f; 
-		spawnWait = 4; 
+		spawnWait = 3.5f; 
 
 
 	}//end of start 
@@ -52,24 +52,26 @@ public class Spawner : MonoBehaviour
 
 			spawnChanceHard = .05f; 
 			spawnChanceEasy = .33f; 
+			spawnWait = 3f;
 			 
 
 		} else if (waveNo > 6 && waveNo < 8) {
 			
 			spawnChanceEasy = .60f; 
-			hazardCount = 4;  
-			spawnWait = 3; 
+			hazardCount = 4;
+			spawnWait = 2.5f;
 
 		} else if (waveNo > 8 && waveNo < 10) {
 
 			spawnChanceHard = .10f;
 			spawnChanceEasy = .65f; 
-			hazardCount = 5; 
+			hazardCount = 5;  
 
 		} else if (waveNo > 11 && waveNo < 30) {
 
 			spawnChanceHard = .15f;
 			spawnChanceEasy = .65f; 
+			spawnWait = 2f;
 
 
 		} else if (waveNo > 30) {

@@ -28,9 +28,9 @@ public class MoveBack : MonoBehaviour {
 
 	IEnumerator WrongBullet () {
 
-		yield return new WaitForSeconds (.4f);
+		yield return new WaitForSeconds (.1f);
 		transform.position += Vector3.forward * 100 * Time.deltaTime; 
-		this.gameObject.GetComponent<EnemyMovement> ().speed += .4f; 
+		this.gameObject.GetComponent<EnemyMovement> ().speed += .6f; 
 
 	}
 }
