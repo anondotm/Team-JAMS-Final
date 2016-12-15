@@ -32,7 +32,7 @@ public class BulletMove : MonoBehaviour {
 				Destroy (enemy.gameObject);
 				GameManager.GetComponent<ScoreManager> ().scoreUpdate (1);
 			} else {
-				enemy.GetComponent<EnemyIdentityScript> ().freezeRoutine ();
+				//enemy.GetComponent<EnemyIdentityScript> ().freezeRoutine ();
 			}
 			Destroy (gameObject);
 		}

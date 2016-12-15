@@ -53,14 +53,17 @@ public class PickupAmmo : MonoBehaviour {
 								heldAmmo.Add ("Red");
 								instantiateAmmo (physicalRed);
 								updateText ();
+								touchingObject.GetComponent<AmmoSource> ().tookAmmo ();
 							} else if (touchingObject.tag == "Ammo2") {
 								heldAmmo.Add ("Green");
 								instantiateAmmo (physicalGreen);
 								updateText ();
+								touchingObject.GetComponent<AmmoSource> ().tookAmmo ();
 							} else if (touchingObject.tag == "Ammo3") {
 								heldAmmo.Add ("Blue");
 								instantiateAmmo (physicalBlue);
 								updateText ();
+								touchingObject.GetComponent<AmmoSource> ().tookAmmo ();
 							}
 								
 						}
@@ -296,12 +299,12 @@ public class PickupAmmo : MonoBehaviour {
 
 	void updateText() {
 		//updates UI element with heldAmmo contents!
-		heldAmmoText.GetComponent<Text>().text = "Ammo held:";
+		//heldAmmoText.GetComponent<Text>().text = "Ammo held:";
 
 		if (heldAmmo.Count > 0) {
-			for (int i = 0; i <= heldAmmoSize; i++) {
-				heldAmmoText.GetComponent<Text> ().text += " " + heldAmmo [i];
-			}
+			//for (int i = 0; i <= heldAmmoSize; i++) {
+				//heldAmmoText.GetComponent<Text> ().text += " " + heldAmmo [i];
+			//}
 		}
 
 	}

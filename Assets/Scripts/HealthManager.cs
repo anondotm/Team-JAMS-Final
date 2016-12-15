@@ -36,7 +36,7 @@ public class HealthManager : MonoBehaviour {
 	public void SetHealthText() {
 
 		HealthText.text = "Health: " + Health.ToString (); 
-		HealthSlider.value = Health;
+		//HealthSlider.value = Health;
 
 	}
 

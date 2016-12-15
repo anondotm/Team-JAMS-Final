@@ -16,15 +16,21 @@ public class AmmoSource : MonoBehaviour {
 	
 	}
 
-	void tookAmmo () {
-		ammoContained [ammoContained.Count - 1];
-		StartCoroutine ("replaceAmmo", ammoContained.Count-1);
+	public void tookAmmo () {
+		Destroy(ammoContained [ammoContained.Count - 1]);
+		ammoContained.RemoveAt (ammoContained.Count -1);
+		StartCoroutine (replaceAmmo(ammoContained.Count));
 	}
 
 	public IEnumerator replaceAmmo(int value){
+		Debug.Log ("success");
 		float startTime = Time.time;
-		if (Time.time > (startTime + 1)) {
-			Instantiate (physicalType, ammoPosition [value], Quaternion.identity);
+		while (Time.time < (startTime + 1)) {
+			yield return 0;
 		}
+		Debug.Log ("Time has passed.");
+		GameObject newAmmo = (GameObject) Instantiate (physicalType, ammoPosition [value].position, Quaternion.identity);
+		ammoContained.Add (newAmmo);
+		yield return 0;
 	}
 }

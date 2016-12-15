@@ -66,7 +66,7 @@ public class ShootBullet : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		ammoCountText.GetComponent<Text> ().text = cannonAmmo.Count.ToString();
+		//ammoCountText.GetComponent<Text> ().text = cannonAmmo.Count.ToString();
 	}
 
 	public void textUpdate() {
@@ -123,10 +123,10 @@ public class ShootBullet : MonoBehaviour {
 		} 
 
 		//updates UI element with heldAmmo contents!
-		heldAmmoText.GetComponent<Text>().text = "Ammo held:";
+		//heldAmmoText.GetComponent<Text>().text = "Ammo held:";
 
-		for (int i = 0; i <= cannonAmmo.Count; i++) {
-			heldAmmoText.GetComponent<Text> ().text += " " + cannonAmmo [i];
-		}
+//		for (int i = 0; i <= cannonAmmo.Count; i++) {
+//			heldAmmoText.GetComponent<Text> ().text += " " + cannonAmmo [i];
+//		}
 	}
 }
