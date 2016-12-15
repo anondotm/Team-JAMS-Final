@@ -12,4 +12,8 @@ public class EnemyIdentityScript : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	public void freezeRoutine(){
+		transform.Translate (0, 0, 1);
+	}
 }
