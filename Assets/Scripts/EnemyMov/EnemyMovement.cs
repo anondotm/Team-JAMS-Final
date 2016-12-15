@@ -49,4 +49,23 @@ public class EnemyMovement : MonoBehaviour {
 			enemyRend.material.SetColor ("_Color", Color.green);
 		}
 	}
+
+//	void OnTriggerEnter(Collider bullet){
+//		
+//			if (enemyIdentity != bullet.GetComponent<BulletMove> ().bulletIdentity) {
+//				StartCoroutine (MoveBack ());  //move enemy back certain distance
+//				Debug.Log("hit wrong enemy!"); 
+//
+//			}
+//			
+//			
+//	} //v
+//
+//	IEnumerator MoveBack () {
+//
+//		yield return new WaitForSeconds (.2f);
+//		transform.position += Vector3.forward * 30 * Time.deltaTime; 
+//		speed += .3f; //increase speed
+//
+//	}
 }
