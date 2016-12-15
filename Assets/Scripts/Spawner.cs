@@ -2,7 +2,7 @@
 using UnityEngine.UI; 
 using System.Collections;
 
-//this script manages the endless loop of spawning enemies. It is on the SpawnManager object. 
+//this script manages the endless loop of spawning enemies. It is on the Spawner object. 
 
 //TO DO: change so spawning values and enemies change depending on what wave you are on
 
@@ -21,8 +21,8 @@ public class Spawner : MonoBehaviour
 
 	public int hazardCount; //how many in each wave
 	public float spawnWait; //how many seconds between each enemy 
-	public float startWait; //how many seconds before each first enemy appears 
-	public float waveWait; //how much between each wave
+	public float startWait; //how many seconds before each first enemy appears (only at very beginning) 
+	public float waveWait; //how many seconds between each wave
 	float spawnChanceHard; //if no. generated below this, hard enemy is spawned 
 	float spawnChanceEasy; //if no. generated above this, easy is spawned. medium is for in between them 
 
@@ -39,6 +39,7 @@ public class Spawner : MonoBehaviour
 
 		spawnChanceHard = .00f; 
 		spawnChanceEasy = .05f; 
+		spawnWait = 4; 
 
 
 	}//end of start 
@@ -47,28 +48,39 @@ public class Spawner : MonoBehaviour
 
 		randomChance = Random.Range (0f, 1f);
 
-		if (waveNo > 3 && waveNo < 6) {
+		if (waveNo > 3 && waveNo < 5) { //difficulty up 
 
-			spawnChanceHard = .10f; 
-			spawnChanceEasy = .25f; 
+			spawnChanceHard = .05f; 
+			spawnChanceEasy = .33f; 
+			 
+
+		} else if (waveNo > 6 && waveNo < 8) {
+			
+			spawnChanceEasy = .60f; 
+			hazardCount = 4;  
 			spawnWait = 3; 
 
-		} else if (waveNo > 6 && waveNo < 10) {
+		} else if (waveNo > 8 && waveNo < 10) {
 
-			spawnChanceHard = .15f; 
-			spawnChanceEasy = .50f; 
-			hazardCount = 4;  
-
-		} else if (waveNo > 10) {
-
-			spawnChanceHard = .25f;
-			spawnChanceEasy = .75f; 
-			spawnWait = 2; 
+			spawnChanceHard = .10f;
+			spawnChanceEasy = .65f; 
 			hazardCount = 5; 
+
+		} else if (waveNo > 11 && waveNo < 30) {
+
+			spawnChanceHard = .15f;
+			spawnChanceEasy = .65f; 
+
+
+		} else if (waveNo > 30) {
+
+			spawnChanceHard = .33f;
+			spawnChanceEasy = .80f; 
+
 
 		}
 
-		if(Input.GetKeyDown(KeyCode.T)){
+		if(Input.GetKeyDown(KeyCode.T)){ //see the spawn values for testing purposes 
 
 			TestingNumbers (); 
 		}

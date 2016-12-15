@@ -29,8 +29,11 @@ public class ScoreManager : MonoBehaviour {
 	}
 
 	public void scoreUpdate(int added){
+		
 		score += added;
 		scoreText.text = "SCORE: " + score.ToString ();
+
+		PlayerPrefs.SetInt ("PlayerScore", score); 
 
 		if (PlayerPrefs.HasKey ("HighScore")) {
 

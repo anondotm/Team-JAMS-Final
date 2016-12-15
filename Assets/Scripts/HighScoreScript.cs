@@ -6,7 +6,6 @@ using System.Collections;
 public class HighScoreScript : MonoBehaviour {
 
 	public Text HighScore; 
-	public Text YourScore; 
 	GameObject ScoreManager; 
 
 
@@ -26,10 +25,13 @@ public class HighScoreScript : MonoBehaviour {
 		}
 	}
 
+
+
 	void ShowHighScore () {
 
-		//YourScore.text = "You eliminated" + ScoreManager.GetComponent<ScoreManager> ().score + "viruses!"; 
-		HighScore.text = "The highest number of enemies eliminated is " + PlayerPrefs.GetInt ("HighScore").ToString () + " viruses!"; //highest score is taken 
+
+		HighScore.text = "You eliminated " + PlayerPrefs.GetInt("PlayerScore").ToString () + " viruses! The highest number of enemies eliminated is " + PlayerPrefs.GetInt ("HighScore").ToString () + " viruses!"; //highest score is taken 
+
 
 	}
 
