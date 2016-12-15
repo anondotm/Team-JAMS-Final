@@ -7,7 +7,7 @@ public class HealthManager : MonoBehaviour {
 
 	public int Health = 10; 
 	public Text HealthText;
-	public Slider HealthSlider;
+	//public Slider HealthSlider;
 
 	// Use this for initialization
 	void Start () {
