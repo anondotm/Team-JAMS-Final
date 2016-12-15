@@ -72,6 +72,8 @@ public class DestroyMyself : MonoBehaviour {
 			other.GetComponent<AudioSource> ().Play();
 			backgroundAnimator1.SetTrigger ("Hit");
 			backgroundAnimator2.SetTrigger ("Hit");
+			backgroundAnimator1.speed += 0.1f;
+			backgroundAnimator2.speed += 0.1f;
 			//Shake the cameras.
 			shakeScreen.StartCoroutine (shakeScreen.ShakeCam ());
 			shakeScreen2.StartCoroutine (shakeScreen2.ShakeCam ());
