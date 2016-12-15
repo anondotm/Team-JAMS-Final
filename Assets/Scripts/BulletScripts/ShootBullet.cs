@@ -17,6 +17,8 @@ public class ShootBullet : MonoBehaviour {
 
 	//Array for Default, Red, Green, and Blue material to indicate what ammo is next (or if the cannon has any ammo at all)
 	public GameObject nextAmmoIndicator;
+	public GameObject nextAmmoIndicator1;
+	public GameObject nextAmmoIndicator2;
 	public Material[] cannonMaterials;
 
 	//We know where to spawn the bullets
@@ -84,6 +86,40 @@ public class ShootBullet : MonoBehaviour {
 			
 		else {
 			nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [3];
+		} 
+
+		if (cannonAmmo.Count > 1) {
+			string nextAmmo1 = cannonAmmo [1];
+
+			//Based on "next ammo," cannon will change material
+			if (nextAmmo1 == "Red") {
+				nextAmmoIndicator1.GetComponent<MeshRenderer> ().material = cannonMaterials [0];
+			} else if (nextAmmo1 == "Green") {
+				nextAmmoIndicator1.GetComponent<MeshRenderer> ().material = cannonMaterials [1];
+			} else if (nextAmmo1 == "Blue") {
+				nextAmmoIndicator1.GetComponent<MeshRenderer> ().material = cannonMaterials [2];
+			} 
+		}
+
+		else {
+			nextAmmoIndicator1.GetComponent<MeshRenderer> ().material = cannonMaterials [3];
+		} 
+
+		if (cannonAmmo.Count > 2) {
+			string nextAmmo2 = cannonAmmo [2];
+
+			//Based on "next ammo," cannon will change material
+			if (nextAmmo2 == "Red") {
+				nextAmmoIndicator2.GetComponent<MeshRenderer> ().material = cannonMaterials [0];
+			} else if (nextAmmo2 == "Green") {
+				nextAmmoIndicator2.GetComponent<MeshRenderer> ().material = cannonMaterials [1];
+			} else if (nextAmmo2 == "Blue") {
+				nextAmmoIndicator2.GetComponent<MeshRenderer> ().material = cannonMaterials [2];
+			} 
+		}
+
+		else {
+			nextAmmoIndicator2.GetComponent<MeshRenderer> ().material = cannonMaterials [3];
 		} 
 
 		//updates UI element with heldAmmo contents!

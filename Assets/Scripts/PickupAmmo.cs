@@ -69,12 +69,12 @@ public class PickupAmmo : MonoBehaviour {
 
 						//feedback only activates if the player can pick something up
 						if (heldAmmoSize < 3) {
-							promptObject.SetActive (true); //activates exclamation mark
-							//currentHighlight.transform.Find ("Highlight").gameObject.SetActive (true); //makes visible the objects "highlight"
+							//promptObject.SetActive (true); //activates exclamation mark
+							touchingObject.transform.Find ("Highlight").gameObject.SetActive (true); //makes visible the objects "highlight"
 							heldAmmoPosition [heldAmmoSize].gameObject.SetActive (true);
 						} else {
-							promptObject.SetActive (false);
-							//currentHighlight.transform.Find ("Highlight").gameObject.SetActive (false);
+							//promptObject.SetActive (false);
+							touchingObject.transform.Find ("Highlight").gameObject.SetActive (false);
 						}
 					}
 						
@@ -84,11 +84,11 @@ public class PickupAmmo : MonoBehaviour {
 				else if (touchingObject.tag == "DumbWaiter") {
 
 					if (heldAmmoSize > 0) {
-						//currentHighlight.transform.Find ("Highlight").gameObject.SetActive (true);
-						promptObject.SetActive (true);
+						touchingObject.transform.Find ("Highlight").gameObject.SetActive (true);
+						//promptObject.SetActive (true);
 					} else {
-						//currentHighlight.transform.Find ("Highlight").gameObject.SetActive (false);
-						promptObject.SetActive (false);
+						touchingObject.transform.Find ("Highlight").gameObject.SetActive (false);
+						//promptObject.SetActive (false);
 					}
 
 					if (Input.GetKeyDown (KeyCode.Space)) {
@@ -109,11 +109,11 @@ public class PickupAmmo : MonoBehaviour {
 				else if (touchingObject.tag == "Trash") {
 
 					if (heldAmmoSize > 0) {
-						//currentHighlight.transform.Find ("Highlight").gameObject.SetActive (true);
-						promptObject.SetActive (true);
+						touchingObject.transform.Find ("Highlight").gameObject.SetActive (true);
+						//promptObject.SetActive (true);
 					} else {
-						//currentHighlight.transform.Find ("Highlight").gameObject.SetActive (false);
-						promptObject.SetActive (false);
+						touchingObject.transform.Find ("Highlight").gameObject.SetActive (false);
+						//promptObject.SetActive (false);
 					}
 
 					if (Input.GetKeyDown (KeyCode.Space)) {
@@ -143,7 +143,7 @@ public class PickupAmmo : MonoBehaviour {
 		Ray ammoCheckRay = new Ray (transform.position, transform.forward);
 		RaycastHit hit;
 
-		if (Physics.SphereCast (ammoCheckRay, .5f, out hit, 2.5f)) {
+		if (Physics.SphereCast (ammoCheckRay, .55f, out hit, 2.35f)) { //default was .5f, 2.5f
 
 			//stores the object that is currently being viewed in "currentHighlight"
 			currentHighlight = hit.collider.gameObject;
@@ -236,7 +236,7 @@ public class PickupAmmo : MonoBehaviour {
 				}
 
 				if (Input.GetKeyDown (KeyCode.Space)) {
-						if (cannonObject.GetComponent<ShootBullet> ().cannonAmmo.Count < 7) {
+						//if (cannonObject.GetComponent<ShootBullet> ().cannonAmmo.Count < 7) {
 							//transfers ammo to player 1
 							cannonObject.GetComponent<ShootBullet> ().cannonAmmo.AddRange (heldAmmo);
 							heldAmmo.Clear ();
@@ -245,7 +245,7 @@ public class PickupAmmo : MonoBehaviour {
 							updateText ();
 
 							cannonObject.GetComponent<ShootBullet> ().textUpdate ();
-						}
+						//}
 
 				}
 
@@ -275,8 +275,14 @@ public class PickupAmmo : MonoBehaviour {
 
 	//OTHER FUNCTIONS
 
-	void OnTriggerEnter (Collider entered) {
-		touchingObject = entered.gameObject;
+	void OnTriggerStay (Collider stay) {
+		touchingObject = stay.gameObject;
+		//touchingObjectScale = touchingObject.transform.localScale;
+		//touchingObject.transform.localScale *= 1.1f;
+	}
+
+	void OnTriggerEnter (Collider enter) {
+		touchingObject = enter.gameObject;
 		touchingObjectScale = touchingObject.transform.localScale;
 		touchingObject.transform.localScale *= 1.1f;
 	}
@@ -285,6 +291,7 @@ public class PickupAmmo : MonoBehaviour {
 		touchingObject = null;
 		promptObject.SetActive (false);
 		exited.gameObject.transform.localScale = touchingObjectScale;
+		exited.transform.Find ("Highlight").gameObject.SetActive (false);
 	}
 
 	void updateText() {

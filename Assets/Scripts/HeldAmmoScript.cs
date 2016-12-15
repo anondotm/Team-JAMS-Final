@@ -28,7 +28,7 @@ public class HeldAmmoScript : MonoBehaviour {
 			yield return 0;
 		}
 
-
+		//Destroy (this.gameObject);
 
 	}
 }

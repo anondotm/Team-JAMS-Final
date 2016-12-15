@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class HealthManager : MonoBehaviour {
 
 	public int Health = 10; 
-	public Text HealthText; 
+	public Text HealthText;
+	public Slider HealthSlider;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +36,7 @@ public class HealthManager : MonoBehaviour {
 	public void SetHealthText() {
 
 		HealthText.text = "Health: " + Health.ToString (); 
+		HealthSlider.value = Health;
 
 	}
 

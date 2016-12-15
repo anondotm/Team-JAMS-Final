@@ -31,6 +31,8 @@ public class BulletMove : MonoBehaviour {
 			if (bulletIdentity == enemy.GetComponent<EnemyIdentityScript> ().enemyIdentity) {
 				Destroy (enemy.gameObject);
 				GameManager.GetComponent<ScoreManager> ().scoreUpdate (1);
+			} else {
+				enemy.GetComponent<EnemyIdentityScript> ().freezeRoutine ();
 			}
 			Destroy (gameObject);
 		}
