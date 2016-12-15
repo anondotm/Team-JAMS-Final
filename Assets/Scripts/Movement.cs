@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// ROBERT: this uses Physics2D, which will not interact with 3D physics at all... is this intentional?
 		isGrounded = Physics2D.OverlapCircle(groundcheck.position, 1f, groundLayer);
 		if(Input.GetKey(KeyCode.W)){
 			rbody.AddForce(Vector3.forward * movespeed);

@@ -8,13 +8,6 @@ public class Invisible : MonoBehaviour {
 	public float speed; 
 	bool isCanonLooking = false; 
 
-	public float fadeSpeed;    // How fast alpha value decreases.
-	public Color fadeColor = new Color (0, 0, 0, 0);
-
-	private Material myMaterial;    // Used to store material reference.
-	private Color myColor;            // Used to store color reference.
-
-
 
 	// Use this for initialization
 
@@ -23,7 +16,7 @@ public class Invisible : MonoBehaviour {
 	void Start () {
 		
 		enemyRend = GetComponent<Renderer> ();
-		Blink ();  
+		StartCoroutine (Blink ()); 
 	}
 
 	void Update (){
@@ -32,7 +25,6 @@ public class Invisible : MonoBehaviour {
 			enemyRend.material.SetColor ("_Color", Color.grey);
 		}
 	}
-
 	// Update is called once per frame
 	void FixedUpdate () {
 		goToPlayer(); //call function 
@@ -63,59 +55,18 @@ public class Invisible : MonoBehaviour {
 		}
 	}
 
-	void Blink () {
+	IEnumerator Blink () {
 
 		for (int x = 0; x < 5; x++) {
 
-//			yield return new WaitForSeconds (1); 
-//
-//			this.gameObject.GetComponent<Renderer>().enabled = false;
-//
-//			yield return new WaitForSeconds (1); 
-//
-//			this.gameObject.GetComponent<Renderer>().enabled = true;
+			yield return new WaitForSeconds (1); 
+			// ROBERT: "this.gameObject" is unnecessary, you can just say "GetComponent..."
+			this.gameObject.GetComponent<Renderer>().enabled = false;
 
-			StartCoroutine (AlphaFade ()); 
-			StartCoroutine (ColorFade ()); 
+			yield return new WaitForSeconds (1); 
+
+			this.gameObject.GetComponent<Renderer>().enabled = true;
 
 		}
 	}
-
-		IEnumerator AlphaFade () {
-			// Alpha start value.
-			float alpha = 1.0f;
-
-			// Loop until aplha is below zero (completely invisible)
-			while (alpha > 0.0f)
-			{
-				// Reduce alpha by fadeSpeed amount.
-				alpha -= fadeSpeed * Time.deltaTime;
-
-				// Alters material color slowly, changing the alpha each time
-				myMaterial.color = new Color (myColor.r, myColor.g, myColor.b, alpha);
-
-				yield return null;
-			}
-		}
-
-
-		// This method fades from original color to "fadeColor"
-		IEnumerator ColorFade () {
-			// Lerp start value.
-			float change = 0.0f;
-
-			// Loop until lerp value is 1 (fully changed)
-			while (change < 1.0f)
-			{
-				// Reduce change value by fadeSpeed amount.
-				change += fadeSpeed * Time.deltaTime;
-
-				myMaterial.color = Color.Lerp (myColor, fadeColor, change);
-
-				yield return null;
-			}
-		} //end of colorfade
-
-
-	}
-
+}
