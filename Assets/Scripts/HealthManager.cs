@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class HealthManager : MonoBehaviour {
 
-	public int Health = 10; 
+	public int Health = 20;  
 	public Text HealthText; 
 
 	// Use this for initialization
