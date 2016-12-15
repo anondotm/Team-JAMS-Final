@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class ShootBullet : MonoBehaviour {
 
+	public GameObject ammoCountText;
+
 	//List for Ammo
 	public List<string> cannonAmmo = new List<string>();
 	public GameObject heldAmmoText;
@@ -59,6 +61,10 @@ public class ShootBullet : MonoBehaviour {
 				textUpdate();
 			}
 		}
+	}
+
+	void FixedUpdate () {
+		ammoCountText.GetComponent<Text> ().text = cannonAmmo.Count.ToString();
 	}
 
 	public void textUpdate() {
