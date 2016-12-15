@@ -5,7 +5,7 @@ public class HeldAmmoScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
@@ -28,7 +28,7 @@ public class HeldAmmoScript : MonoBehaviour {
 			yield return 0;
 		}
 
-
+		//Destroy (this.gameObject);
 
 	}
 }

@@ -65,7 +65,7 @@ public class Invisible : MonoBehaviour {
 		for (int x = 0; x < 5; x++) {
 
 			yield return new WaitForSeconds (1); 
-
+			// ROBERT: "this.gameObject" is unnecessary, you can just say "GetComponent..."
 			this.gameObject.GetComponent<Renderer>().enabled = false;
 
 			yield return new WaitForSeconds (1); 
