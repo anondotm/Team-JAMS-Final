@@ -8,6 +8,7 @@ public class TitleScreen : MonoBehaviour {
 	public Canvas titleMenu; 
 	public Button PlayScene; 
 	public Button QuitButton; 
+	public Button TutorialButton; 
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +29,12 @@ public class TitleScreen : MonoBehaviour {
 	public void Quit () {
 
 		Debug.Log ("QuitGame"); 
+
+	}
+
+	public void GoToTutorial () {
+
+		SceneManager.LoadScene (4); 
 
 	}
 }
