@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		//First we lock the mouse into the screen
 		// ROBERT: Screen.lockCursor is deprecated, use Cursor.LockState in the future
-		Screen.lockCursor = true;
+		Cursor.lockState  = CursorLockMode.Locked;
 		//TODO: Consider adding the possibility for the player to unlock the mouse from the screen; and then back again
 		if (canMove) {
 			//Create all the variables that will keep track of player movement/location
