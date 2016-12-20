@@ -4,6 +4,7 @@ using System.Collections;
 public class MoveBack : MonoBehaviour {
 
 	public string enemyIdentity; 
+	public AudioSource wrongEnemy; 
 
 	// Use this for initialization
 	void Start () {
@@ -28,9 +29,10 @@ public class MoveBack : MonoBehaviour {
 
 	IEnumerator WrongBullet () {
 
-		yield return new WaitForSeconds (.1f);
+		yield return new WaitForSeconds (.4f);
 		transform.position += Vector3.forward * 100 * Time.deltaTime; 
-		this.gameObject.GetComponent<EnemyMovement> ().speed += .6f; 
+		this.gameObject.GetComponent<EnemyMovement> ().speed += .4f; 
+		wrongEnemy.Play (); 
 
 	}
 }
