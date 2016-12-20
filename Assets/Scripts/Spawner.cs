@@ -11,8 +11,10 @@ public class Spawner : MonoBehaviour
 	//public GameObject hazard;
 	//public GameObject hazard2; 
 	public Vector3 spawnValues;
-	public GameObject [] easyEnemies; 
-	public GameObject [] mediumEnemies; 
+	public GameObject [] superEasyEnemies; 
+	public GameObject [] easyEnemies;
+	public GameObject[] mediumEnemies; 
+	public GameObject [] mediumHardEnemies; 
 	public GameObject[] hardEnemies; 
 
 	GameObject[] spawnArray;
@@ -23,8 +25,11 @@ public class Spawner : MonoBehaviour
 	public float spawnWait; //how many seconds between each enemy 
 	public float startWait; //how many seconds before each first enemy appears (only at very beginning) 
 	public float waveWait; //how many seconds between each wave
-	float spawnChanceHard; //if no. generated below this, hard enemy is spawned 
-	float spawnChanceEasy; //if no. generated above this, easy is spawned. medium is for in between them 
+	float spawnChanceHard; //if randomChance generated below this, hard enemy is spawned 
+	float spawnChanceMediumHard; //if no. generated below this but above spawnChanceHard, spawn this array
+	float spawnChanceEasy; //if no. generated is below this but above spawnChanceMedium, spawn this array
+	float spawnChanceSuperEasy; //if no. generated is above ths, generate this array 
+
 
 	int waveNo = 1; //number of waves passed
 
@@ -38,8 +43,17 @@ public class Spawner : MonoBehaviour
 		SetWaveNumber (); 
 
 		spawnChanceHard = .00f; 
-		spawnChanceEasy = .05f; 
-		spawnWait = 3.5f; 
+		spawnChanceMediumHard = .00f; 
+
+
+
+
+
+
+
+		//spawnChanceMedium = .00f; 
+		spawnChanceSuperEasy = .05f; 
+		spawnWait = 3f; 
 
 
 	}//end of start 
@@ -52,14 +66,14 @@ public class Spawner : MonoBehaviour
 
 			spawnChanceHard = .05f; 
 			spawnChanceEasy = .33f; 
-			spawnWait = 3f;
+			spawnWait = 2.75f;
 			 
 
 		} else if (waveNo > 6 && waveNo < 8) {
 			
 			spawnChanceEasy = .60f; 
 			hazardCount = 4;
-			spawnWait = 2.5f;
+			spawnWait = 2f;
 
 		} else if (waveNo > 8 && waveNo < 10) {
 
@@ -107,9 +121,9 @@ public class Spawner : MonoBehaviour
 
 				Debug.Log (randomChance); 
 
-				if (randomChance > spawnChanceEasy) {
+				if (randomChance > spawnChanceSuperEasy) {
 
-					spawnArray = easyEnemies;
+					spawnArray = superEasyEnemies;
 
 				}
 				else if (randomChance < spawnChanceHard) {

@@ -7,6 +7,7 @@ public class Invisible : MonoBehaviour {
 	Renderer enemyRend; 
 	public float speed; 
 	bool isCanonLooking = false; 
+	public bool isTutorial = false;
 
 
 	// Use this for initialization
@@ -20,6 +21,10 @@ public class Invisible : MonoBehaviour {
 	}
 
 	void Update (){
+
+		if (!isTutorial) {
+			speed = 0;
+		}
 		//If the Canon is not looking at the object, then set the color of the ennemy to grey.
 		if (!isCanonLooking) {
 			enemyRend.material.SetColor ("_Color", Color.grey);
