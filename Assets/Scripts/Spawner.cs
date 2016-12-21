@@ -66,26 +66,25 @@ public class Spawner : MonoBehaviour
 
 			spawnChanceHard = .05f; 
 			spawnChanceEasy = .33f; 
-			spawnWait = 2.25f;
+			spawnWait = 1.75f;
 			 
 
 		} else if (waveNo > 6 && waveNo < 8) {
 			
 			spawnChanceEasy = .60f; 
 			hazardCount = 4;
-			spawnWait = 2f;
 
 		} else if (waveNo > 8 && waveNo < 10) {
 
 			spawnChanceHard = .10f;
 			spawnChanceEasy = .65f; 
-			hazardCount = 5;  
+			hazardCount = 5;
+			spawnWait = 1.5f;
 
 		} else if (waveNo > 11 && waveNo < 30) {
 
 			spawnChanceHard = .15f;
 			spawnChanceEasy = .65f; 
-			spawnWait = 1.5f;
 
 
 		} else if (waveNo > 30) {
@@ -136,7 +135,7 @@ public class Spawner : MonoBehaviour
 
 				} //end of else
 					
-				Vector3 spawnPosition = new Vector3 (Random.Range (transform.position.x-spawnValues.x, transform.position.x+spawnValues.x), Random.Range (transform.position.y-spawnValues.y, transform.position.y+spawnValues.y), spawnValues.z); //spawn between set values INCLUDES 
+				Vector3 spawnPosition = new Vector3 (Random.Range (transform.position.x-spawnValues.x, transform.position.x+spawnValues.x), Random.Range (transform.position.y-spawnValues.y, transform.position.y+spawnValues.y), transform.position.z); //spawn between set values INCLUDES 
 				Quaternion spawnRotation = Quaternion.identity; 
 
 				enemyIndex = Random.Range (0, spawnArray.Length);
