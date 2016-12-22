@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class HeldAmmoScript : MonoBehaviour {
-
+	bool destroyed;
 	// Use this for initialization
 	void Start () {
-		
+		destroyed = false;
 	}
 	
 	// Update is called once per frame
@@ -14,6 +14,12 @@ public class HeldAmmoScript : MonoBehaviour {
 			StartCoroutine ("MoveCoroutine");
 		}
 	
+	}
+
+	void FixedUpdate () {
+		if (destroyed == true) {
+			Destroy (this.gameObject);
+		}
 	}
 
 	public IEnumerator MoveCoroutine() {
@@ -28,7 +34,9 @@ public class HeldAmmoScript : MonoBehaviour {
 			yield return 0;
 		}
 
-		//Destroy (this.gameObject);
+
+		destroyed = true;
+		yield return 0;
 
 	}
 }

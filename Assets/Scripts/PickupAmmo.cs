@@ -332,6 +332,7 @@ public class PickupAmmo : MonoBehaviour {
 		for (int i = 0; i < physicalAmmoList.Count; i++) {
 			physicalAmmoList [i].GetComponent<HeldAmmoScript> ().StartCoroutine ("MoveCoroutine");
 		}
+		physicalAmmoList.Clear();
 	}
 		
 }
