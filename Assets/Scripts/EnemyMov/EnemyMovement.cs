@@ -45,6 +45,7 @@ public class EnemyMovement : MonoBehaviour {
 	}
 	void OnTriggerExit( Collider canon){
 		isCanonLooking = false;
+
 	}
 	void getColor(){
 		if (enemyIdentity == "Red") {
@@ -54,6 +55,7 @@ public class EnemyMovement : MonoBehaviour {
 		} else {
 			enemyRend.material.SetColor ("_Color", Color.green);
 		}
+		//this.transform.Find ("Highlight").gameObject.SetActive (true);
 	}
 
 //	void OnTriggerEnter(Collider bullet){

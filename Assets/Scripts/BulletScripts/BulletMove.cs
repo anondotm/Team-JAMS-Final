@@ -36,13 +36,13 @@ public class BulletMove : MonoBehaviour {
 			Debug.Log ("This hit an ennemy");
 			if (bulletIdentity == enemy.GetComponent<EnemyIdentityScript> ().enemyIdentity) {
 				Debug.Log ("But did it destroy it");
-				//soundObject.GetComponent<AudioScript> ().EnemyHit ();
+				soundObject.GetComponent<AudioScript> ().EnemyHit ();
 				Instantiate (particle_explosion, transform.position, Quaternion.identity);
 				Destroy (enemy.gameObject);
 				GameManager.GetComponent<ScoreManager> ().scoreUpdate (1);
 				Debug.Log ("You hit an enemy!");
 			} else {
-				//soundObject.GetComponent<AudioScript> ().WrongEnemyHit ();
+				soundObject.GetComponent<AudioScript> ().WrongEnemyHit ();
 				//enemy.GetComponent<EnemyIdentityScript> ().freezeRoutine ();
 			}
 			Destroy (gameObject);
