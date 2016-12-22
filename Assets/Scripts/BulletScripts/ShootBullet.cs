@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class ShootBullet : MonoBehaviour {
 
+	public GameObject soundObject;
 	public GameObject ammoCountText;
 
 	//List for Ammo
@@ -41,6 +42,7 @@ public class ShootBullet : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
+		soundObject = GameObject.FindGameObjectWithTag ("AudioPlay");
 		//Finds the camera as that is what will define the local rotation for the bulets
 		player = GameObject.FindGameObjectWithTag ("MainCamera");
 		//gets the transform of the camera
@@ -77,6 +79,7 @@ public class ShootBullet : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			//If you have at enough ammo to shoot...
 			if (cannonAmmo.Count > 0) {
+				soundObject.GetComponent<AudioScript> ().Shot ();
 				//Shoot type of bullet based on what ammo is next in the cannonAmmo list ("nextAmmo")
 				if (nextAmmo == "Red") {
 					Instantiate (bulletArray[0], spawner.position, playerT.rotation);
