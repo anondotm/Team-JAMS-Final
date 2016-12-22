@@ -38,7 +38,7 @@ public class CharacterMovement : MonoBehaviour {
 			StartCoroutine ("dash");
 		}
 
-		playerController.SimpleMove (new Vector3(inputX,0,inputY) * playerSpeed);
+		playerController.SimpleMove (new Vector3(inputX,0,inputY) * playerSpeed * Time.deltaTime * 70);
 
 	}
 

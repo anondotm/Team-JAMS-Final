@@ -4,6 +4,7 @@ using System.Collections;
 public class AudioScript : MonoBehaviour {
 	public AudioSource EnemyHitSource;
 	public AudioSource WrongEnemyHitSource;
+	public AudioSource ShotSource;
 	// Use this for initialization
 	void Start () {
 	
@@ -20,5 +21,9 @@ public class AudioScript : MonoBehaviour {
 
 	public void WrongEnemyHit() {
 		WrongEnemyHitSource.Play ();
+	}
+
+	public void Shot(){
+		ShotSource.Play ();
 	}
 }

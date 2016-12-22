@@ -3,6 +3,9 @@ using System.Collections;
 
 public class UpAndDown : MonoBehaviour {
 
+	public GameObject highlight;
+	public GameObject transparent;
+
 	public string enemyIdentity;
 	Renderer enemyRend; 
 	public float speed; 
@@ -27,6 +30,9 @@ public class UpAndDown : MonoBehaviour {
 //	}
 
 	void Start () {
+		transparent = this.transform.Find ("InvisiVirus").gameObject;
+		highlight = this.transform.Find ("Highlight").gameObject;
+
 		enemyRend = GetComponent<Renderer> ();
 		pos = transform.position; 
 		axis = transform.up; 
@@ -36,8 +42,8 @@ public class UpAndDown : MonoBehaviour {
 	void Update (){
 		//If the Canon is not looking at the object, then set the color of the ennemy to grey.
 		if (!isCanonLooking) {
-			enemyRend.material.SetColor ("_Color", Color.grey);
-
+			//enemyRend.material.SetColor ("_Color", Color.grey);
+			transparent.SetActive (true);
 		}
 
 		pos -= transform.forward * Time.deltaTime * movSpeed; 
@@ -53,24 +59,33 @@ public class UpAndDown : MonoBehaviour {
 	}
 
 	void OnTriggerEnter( Collider canon){
-		isCanonLooking = true;
-		getColor ();
+		if (canon.name == "aim") {
+			isCanonLooking = true;
+			getColor ();
+		}
 	}
 	void OnTriggerStay( Collider canon){
-		isCanonLooking = true;
-		getColor ();
+		if (canon.name == "aim") {
+			isCanonLooking = true;
+			getColor ();
+		}
 	}
 	void OnTriggerExit( Collider canon){
-		isCanonLooking = false;
+		if (canon.name == "aim") {
+			isCanonLooking = false;
+			highlight.SetActive (false);
+		}
 	}
 	void getColor(){
-		if (enemyIdentity == "Red") {
-			enemyRend.material.SetColor ("_Color", Color.red);
-		} else if (enemyIdentity == "Blue") {
-			enemyRend.material.SetColor ("_Color", Color.blue);
-		} else {
-			enemyRend.material.SetColor ("_Color", Color.green);
-		}
+		//		if (enemyIdentity == "Red") {
+		//			enemyRend.material.SetColor ("_Color", Color.red);
+		//		} else if (enemyIdentity == "Blue") {
+		//			enemyRend.material.SetColor ("_Color", Color.blue);
+		//		} else {
+		//			enemyRend.material.SetColor ("_Color", Color.green);
+		//		}
+		highlight.SetActive (true);
+		transparent.SetActive (false);
 	}
 
 }
