@@ -30,6 +30,10 @@ public class ShootBullet : MonoBehaviour {
 	GameObject player;
 	Transform playerT;
 
+	bool container1, container2, container3;
+	Color lerped1, lerped2, lerped3, bulletColor1, bulletColor2, bulletColor3;
+
+
 	//Tried to get this to talk to the ammo container. Currently not working
 //	public GameObject ammoContainer;
 //	public AmmoHolder theAmmo;
@@ -48,6 +52,28 @@ public class ShootBullet : MonoBehaviour {
 	void Update () {
 		//totalAmmo = theAmmo.getAmmo ();
 		//If you press mouse button, ammo will be shot from the cannon.
+		if (container1) {
+			lerped1 = Color.Lerp (Color.black, bulletColor1, Mathf.PingPong (Time.time, 1));
+			nextAmmoIndicator.GetComponent<Renderer> ().material.SetColor ("_Color", lerped1);
+		} else {
+			lerped1 = Color.Lerp (Color.black, Color.gray, Mathf.PingPong (Time.time, 1));
+			nextAmmoIndicator.GetComponent<Renderer> ().material.SetColor ("_Color", lerped1);
+		}
+		if (container2) {
+			lerped2 = Color.Lerp (Color.black, bulletColor2, Mathf.PingPong (Time.time, 1));
+			nextAmmoIndicator1.GetComponent<Renderer> ().material.SetColor ("_Color", lerped2);
+		} else {
+			lerped2 = Color.Lerp (Color.black, Color.grey, Mathf.PingPong (Time.time, 1));
+			nextAmmoIndicator1.GetComponent<Renderer> ().material.SetColor ("_Color", lerped2);
+		}
+		if (container3) {
+			lerped3 = Color.Lerp (Color.black, bulletColor3, Mathf.PingPong (Time.time, 1));
+			nextAmmoIndicator2.GetComponent<Renderer> ().material.SetColor ("_Color", lerped3);
+		} else {
+			lerped3 = Color.Lerp (Color.black, Color.grey, Mathf.PingPong (Time.time, 1));
+			nextAmmoIndicator2.GetComponent<Renderer> ().material.SetColor ("_Color", lerped3);
+		}
+
 		if (Input.GetMouseButtonDown (0)) {
 			//If you have at enough ammo to shoot...
 			if (cannonAmmo.Count > 0) {
@@ -76,16 +102,23 @@ public class ShootBullet : MonoBehaviour {
 
 			//Based on "next ammo," cannon will change material
 			if (nextAmmo == "Red") {
-				nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [0];
+				bulletColor1 = Color.red;
+				container1 = true;
+				//nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [0];
 			} else if (nextAmmo == "Green") {
-				nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [1];
+				bulletColor1 = Color.green;
+				container1 = true;
+				//nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [1];
 			} else if (nextAmmo == "Blue") {
-				nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [2];
+				bulletColor1 = Color.blue;
+				container1 = true;
+				//nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [2];
 			} 
 		}
 			
 		else {
-			nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [3];
+			container1 = false;
+			//nextAmmoIndicator.GetComponent<MeshRenderer> ().material = cannonMaterials [3];
 		} 
 
 		if (cannonAmmo.Count > 1) {
@@ -93,16 +126,23 @@ public class ShootBullet : MonoBehaviour {
 
 			//Based on "next ammo," cannon will change material
 			if (nextAmmo1 == "Red") {
-				nextAmmoIndicator1.GetComponent<MeshRenderer> ().material = cannonMaterials [0];
+				bulletColor2 = Color.red;
+				container2 = true;
+				//nextAmmoIndicator1.GetComponent<MeshRenderer> ().material = cannonMaterials [0];
 			} else if (nextAmmo1 == "Green") {
-				nextAmmoIndicator1.GetComponent<MeshRenderer> ().material = cannonMaterials [1];
+				bulletColor2 = Color.green;
+				container2 = true;
+				//nextAmmoIndicator1.GetComponent<MeshRenderer> ().material = cannonMaterials [1];
 			} else if (nextAmmo1 == "Blue") {
-				nextAmmoIndicator1.GetComponent<MeshRenderer> ().material = cannonMaterials [2];
+				bulletColor2 = Color.blue;
+				container2 = true;
+				//nextAmmoIndicator1.GetComponent<MeshRenderer> ().material = cannonMaterials [2];
 			} 
 		}
 
 		else {
-			nextAmmoIndicator1.GetComponent<MeshRenderer> ().material = cannonMaterials [3];
+			container2 = false;
+			//nextAmmoIndicator1.GetComponent<MeshRenderer> ().material = cannonMaterials [3];
 		} 
 
 		if (cannonAmmo.Count > 2) {
@@ -110,16 +150,23 @@ public class ShootBullet : MonoBehaviour {
 
 			//Based on "next ammo," cannon will change material
 			if (nextAmmo2 == "Red") {
-				nextAmmoIndicator2.GetComponent<MeshRenderer> ().material = cannonMaterials [0];
+				bulletColor3 = Color.red;
+				container3 = true;
+				//nextAmmoIndicator2.GetComponent<MeshRenderer> ().material = cannonMaterials [0];
 			} else if (nextAmmo2 == "Green") {
-				nextAmmoIndicator2.GetComponent<MeshRenderer> ().material = cannonMaterials [1];
+				bulletColor3 = Color.green;
+				container3 = true;
+				//nextAmmoIndicator2.GetComponent<MeshRenderer> ().material = cannonMaterials [1];
 			} else if (nextAmmo2 == "Blue") {
-				nextAmmoIndicator2.GetComponent<MeshRenderer> ().material = cannonMaterials [2];
+				bulletColor3 = Color.blue;
+				container3 = true;
+				//nextAmmoIndicator2.GetComponent<MeshRenderer> ().material = cannonMaterials [2];
 			} 
 		}
 
 		else {
-			nextAmmoIndicator2.GetComponent<MeshRenderer> ().material = cannonMaterials [3];
+			container3 = false;
+			//nextAmmoIndicator2.GetComponent<MeshRenderer> ().material = cannonMaterials [3];
 		} 
 
 		//updates UI element with heldAmmo contents!
