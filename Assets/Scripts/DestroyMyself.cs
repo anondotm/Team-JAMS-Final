@@ -15,6 +15,8 @@ public class DestroyMyself : MonoBehaviour {
 	Animator backgroundAnimator1;
 	Animator backgroundAnimator2;
 
+
+
 	// Use this for initialization
 	void Start () {
 
@@ -70,6 +72,7 @@ public class DestroyMyself : MonoBehaviour {
 
 		if(other.gameObject.tag == "enemy") {
 			other.GetComponent<AudioSource> ().Play();
+
 			backgroundAnimator1.SetTrigger ("Hit");
 			backgroundAnimator2.SetTrigger ("Hit");
 			backgroundAnimator1.speed += 0.1f;
