@@ -56,7 +56,7 @@ public class ShootBullet : MonoBehaviour {
 			lerped1 = Color.Lerp (Color.black, bulletColor1, Mathf.PingPong (Time.time, 1));
 			nextAmmoIndicator.GetComponent<Renderer> ().material.SetColor ("_Color", lerped1);
 		} else {
-			lerped1 = Color.Lerp (Color.black, Color.gray, Mathf.PingPong (Time.time, 1));
+			lerped1 = Color.Lerp (Color.grey, Color.black, Mathf.PingPong (Time.time, 1));
 			nextAmmoIndicator.GetComponent<Renderer> ().material.SetColor ("_Color", lerped1);
 		}
 		if (container2) {
@@ -70,7 +70,7 @@ public class ShootBullet : MonoBehaviour {
 			lerped3 = Color.Lerp (Color.black, bulletColor3, Mathf.PingPong (Time.time, 1));
 			nextAmmoIndicator2.GetComponent<Renderer> ().material.SetColor ("_Color", lerped3);
 		} else {
-			lerped3 = Color.Lerp (Color.black, Color.grey, Mathf.PingPong (Time.time, 1));
+			lerped3 = Color.Lerp (Color.grey, Color.black, Mathf.PingPong (Time.time, 1));
 			nextAmmoIndicator2.GetComponent<Renderer> ().material.SetColor ("_Color", lerped3);
 		}
 
