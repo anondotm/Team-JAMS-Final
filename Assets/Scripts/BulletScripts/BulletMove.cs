@@ -14,6 +14,8 @@ public class BulletMove : MonoBehaviour {
 	//Scoremanager object to update whenever enemy is hit!
 	public GameObject GameManager;
 
+	public GameObject particle_explosion;
+
 	// Use this for initialization
 	void Start () {
 		//We get the rigidbody
@@ -31,13 +33,16 @@ public class BulletMove : MonoBehaviour {
 	void OnTriggerEnter( Collider enemy){
 		//Destroy the bullet and enemy if they collide. ENEMY NEEDS TO BE TRIGGER!!!!!!
 		if (enemy.tag == "enemy") {
+			Debug.Log ("This hit an ennemy");
 			if (bulletIdentity == enemy.GetComponent<EnemyIdentityScript> ().enemyIdentity) {
-				soundObject.GetComponent<AudioScript> ().EnemyHit ();
+				Debug.Log ("But did it destroy it");
+				//soundObject.GetComponent<AudioScript> ().EnemyHit ();
+				Instantiate (particle_explosion, transform.position, Quaternion.identity);
 				Destroy (enemy.gameObject);
 				GameManager.GetComponent<ScoreManager> ().scoreUpdate (1);
 				Debug.Log ("You hit an enemy!");
 			} else {
-				soundObject.GetComponent<AudioScript> ().WrongEnemyHit ();
+				//soundObject.GetComponent<AudioScript> ().WrongEnemyHit ();
 				//enemy.GetComponent<EnemyIdentityScript> ().freezeRoutine ();
 			}
 			Destroy (gameObject);
