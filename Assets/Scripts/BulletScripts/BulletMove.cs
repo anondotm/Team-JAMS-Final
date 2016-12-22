@@ -35,6 +35,7 @@ public class BulletMove : MonoBehaviour {
 				soundObject.GetComponent<AudioScript> ().EnemyHit ();
 				Destroy (enemy.gameObject);
 				GameManager.GetComponent<ScoreManager> ().scoreUpdate (1);
+				Debug.Log ("You hit an enemy!");
 			} else {
 				soundObject.GetComponent<AudioScript> ().WrongEnemyHit ();
 				//enemy.GetComponent<EnemyIdentityScript> ().freezeRoutine ();
