@@ -28,7 +28,8 @@ public class TitleScreen : MonoBehaviour {
 
 	public void Quit () {
 
-		Debug.Log ("QuitGame"); 
+		//Debug.Log ("QuitGame"); 
+		Application.Quit();
 
 	}
 
