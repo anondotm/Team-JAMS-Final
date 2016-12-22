@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class BulletMove : MonoBehaviour {
+
+	public GameObject soundObject;
 	//The "identity" of this bullet (color for now). Use this to check if identity matches for enemies, if you can destroy
 	public string bulletIdentity;
 	//Each bullet has a rigidbody to add velocity/for it to move
@@ -16,6 +18,7 @@ public class BulletMove : MonoBehaviour {
 	void Start () {
 		//We get the rigidbody
 		GameManager = GameObject.FindGameObjectWithTag ("gameManagertag"); 
+		soundObject = GameObject.FindGameObjectWithTag ("AudioPlay");
 		bulletRigidBody = GetComponent<Rigidbody> ();
 	}
 
@@ -29,9 +32,11 @@ public class BulletMove : MonoBehaviour {
 		//Destroy the bullet and enemy if they collide. ENEMY NEEDS TO BE TRIGGER!!!!!!
 		if (enemy.tag == "enemy") {
 			if (bulletIdentity == enemy.GetComponent<EnemyIdentityScript> ().enemyIdentity) {
+				soundObject.GetComponent<AudioScript> ().EnemyHit ();
 				Destroy (enemy.gameObject);
 				GameManager.GetComponent<ScoreManager> ().scoreUpdate (1);
 			} else {
+				soundObject.GetComponent<AudioScript> ().WrongEnemyHit ();
 				//enemy.GetComponent<EnemyIdentityScript> ().freezeRoutine ();
 			}
 			Destroy (gameObject);
