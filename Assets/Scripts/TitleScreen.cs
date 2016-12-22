@@ -34,7 +34,7 @@ public class TitleScreen : MonoBehaviour {
 
 	public void GoToTutorial () {
 
-		SceneManager.LoadScene (4); 
+		SceneManager.LoadScene (3); 
 
 	}
 }
