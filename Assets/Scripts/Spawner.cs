@@ -66,7 +66,7 @@ public class Spawner : MonoBehaviour
 
 			spawnChanceHard = .05f; 
 			spawnChanceEasy = .33f; 
-			spawnWait = 1.75f;
+			spawnWait = 2f;
 			 
 
 		} else if (waveNo > 6 && waveNo < 8) {
@@ -79,7 +79,7 @@ public class Spawner : MonoBehaviour
 			spawnChanceHard = .10f;
 			spawnChanceEasy = .65f; 
 			hazardCount = 5;
-			spawnWait = 1.5f;
+			spawnWait = 1.75f;
 
 		} else if (waveNo > 11 && waveNo < 30) {
 
