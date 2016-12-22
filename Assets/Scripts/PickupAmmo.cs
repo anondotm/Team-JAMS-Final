@@ -72,11 +72,11 @@ public class PickupAmmo : MonoBehaviour {
 
 						//feedback only activates if the player can pick something up
 						if (heldAmmoSize < 3) {
-							//promptObject.SetActive (true); //activates exclamation mark
+							promptObject.SetActive (true); //activates exclamation mark
 							touchingObject.transform.Find ("Highlight").gameObject.SetActive (true); //makes visible the objects "highlight"
 							heldAmmoPosition [heldAmmoSize].gameObject.SetActive (true);
 						} else {
-							//promptObject.SetActive (false);
+							promptObject.SetActive (false);
 							touchingObject.transform.Find ("Highlight").gameObject.SetActive (false);
 						}
 					}
@@ -88,10 +88,10 @@ public class PickupAmmo : MonoBehaviour {
 
 					if (heldAmmoSize > 0) {
 						touchingObject.transform.Find ("Highlight").gameObject.SetActive (true);
-						//promptObject.SetActive (true);
+						promptObject.SetActive (true);
 					} else {
 						touchingObject.transform.Find ("Highlight").gameObject.SetActive (false);
-						//promptObject.SetActive (false);
+						promptObject.SetActive (false);
 					}
 
 					if (Input.GetKeyDown (KeyCode.Space)) {
@@ -113,10 +113,10 @@ public class PickupAmmo : MonoBehaviour {
 
 					if (heldAmmoSize > 0) {
 						touchingObject.transform.Find ("Highlight").gameObject.SetActive (true);
-						//promptObject.SetActive (true);
+						promptObject.SetActive (true);
 					} else {
 						touchingObject.transform.Find ("Highlight").gameObject.SetActive (false);
-						//promptObject.SetActive (false);
+						promptObject.SetActive (false);
 					}
 
 					if (Input.GetKeyDown (KeyCode.Space)) {

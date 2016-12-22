@@ -28,7 +28,7 @@ public class AmmoSource : MonoBehaviour {
 		while (Time.time < (startTime + 1)) {
 			yield return 0;
 		}
-		Debug.Log ("Time has passed.");
+		//Debug.Log ("Time has passed.");
 		GameObject newAmmo = (GameObject) Instantiate (physicalType, ammoPosition [value].position, Quaternion.identity);
 		ammoContained.Add (newAmmo);
 		yield return 0;
