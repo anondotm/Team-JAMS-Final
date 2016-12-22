@@ -69,6 +69,7 @@ public class EnemyMovement : MonoBehaviour {
 //		} else {
 //			enemyRend.material.SetColor ("_Color", Color.green);
 //		}
+		//Debug.Log("blah!");
 		highlight.SetActive (true);
 		transparent.SetActive (false);
 	}

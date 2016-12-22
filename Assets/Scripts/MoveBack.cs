@@ -17,11 +17,13 @@ public class MoveBack : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider bullet){
+		if (bullet.tag == "Ammo1") {
 
-		if (enemyIdentity != bullet.GetComponent<BulletMove> ().bulletIdentity) {
-			StartCoroutine (WrongBullet ());  //move enemy back certain distance
-			Debug.Log("hit wrong enemy!"); 
+			if (enemyIdentity != bullet.GetComponent<BulletMove> ().bulletIdentity) {
+				StartCoroutine (WrongBullet ());  //move enemy back certain distance
+				Debug.Log ("hit wrong enemy!"); 
 
+			}
 		}
 
 

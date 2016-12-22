@@ -76,11 +76,14 @@ public class TutorialManager : MonoBehaviour {
 		//When the first enemy has been defeated, turn on the MeshRenderers for the remaining 3 enemies, with pauses in between, and breaks out
 		while (firstTarget == null) {
 			yield return new WaitForSeconds (1.0f);
-			secondTarget.GetComponent<MeshRenderer> ().enabled = true;
+			secondTarget.SetActive (true);
+			//secondTarget.GetComponent<MeshRenderer> ().enabled = true;
 			yield return new WaitForSeconds (0.5f);
-			thirdTarget.GetComponent<MeshRenderer> ().enabled = true;
+			thirdTarget.SetActive (true);
+			//thirdTarget.GetComponent<MeshRenderer> ().enabled = true;
 			yield return new WaitForSeconds (0.5f);
-			fourthTarget.GetComponent<MeshRenderer> ().enabled = true;
+			fourthTarget.SetActive (true);
+			//fourthTarget.GetComponent<MeshRenderer> ().enabled = true;
 			break;
 		}
 		topScreenUI.GetComponent<Text> ().text = "Whoa! Three enemies! Okay deck, \nload the right ammo quick!";
@@ -90,7 +93,7 @@ public class TutorialManager : MonoBehaviour {
 
 		//Waits for the Player 2 to press Space 4 times (3 times to load the appropriate ammo, 1 time to load it to the cannon)
 		//Here is where private integer is used
-		while (i <= 3) {
+		while (i <= 2) {
 			if (Input.GetKeyDown (KeyCode.Space)) {
 				i++;
 			}
